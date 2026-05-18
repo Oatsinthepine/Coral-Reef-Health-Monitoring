@@ -1,0 +1,88 @@
+# =========================
+# Node / Vite dependencies
+# =========================
+node_modules/
+.npm/
+.pnpm-store/
+.yarn/
+yarn-error.log
+package-lock.json
+
+# Keep package-lock.json only if you intentionally want reproducible npm installs.
+# If your unit expects exact reproducibility, remove package-lock.json from this ignore list.
+
+# =========================
+# Vite / build outputs
+# =========================
+dist/
+build/
+.vite/
+.cache/
+
+# =========================
+# Environment files
+# =========================
+.env
+.env.local
+.env.*.local
+
+# =========================
+# Logs
+# =========================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# macOS / system files
+# =========================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# =========================
+# Editor / IDE files
+# =========================
+.vscode/
+.idea/
+.cursor/
+*.swp
+*.swo
+
+# =========================
+# Python temporary files
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# =========================
+# Temporary / scratch files
+# =========================
+tmp/
+temp/
+scratch/
+drafts/
+*.bak
+*.tmp
+
+# =========================
+# data
+# =========================
+public/data/
+
+# =========================
+# Optional raw data archives
+# =========================
+*.zip
+*.rar
