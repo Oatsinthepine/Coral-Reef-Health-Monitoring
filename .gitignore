@@ -19,6 +19,9 @@ build/
 .vite/
 .cache/
 
+dist/
+node_modules/
+
 # =========================
 # Environment files
 # =========================
