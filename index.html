@@ -3,20 +3,246 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Australian Coral Reef Health Monitoring</title>
+    <title>Mapping Coral Reef Health in the Great Barrier Reef</title>
     <link rel="stylesheet" href="/src/styles/style.css" />
   </head>
   <body>
-    <header id="intro" class="section">
-      <h1>Australian Coral Reef Health Monitoring</h1>
-      <p class="lede">
-        Long-term monitoring of coral condition, benthic cover, ecological disturbance,
-        and marine protected-area context across the Great Barrier Reef.
-      </p>
+    <!-- 1. Header / Intro -->
+    <header id="intro" class="page-header">
+      <div class="page-header__inner">
+        <h1>Mapping Coral Reef Health in the Great Barrier Reef</h1>
+        <p class="subtitle">
+          Long-term coral condition, benthic cover, disturbance and protected-area context
+        </p>
+        <p class="intro-text">
+          This interactive narrative visualisation communicates selected findings from the
+          Data Exploration Project (DEP) using long-term Australian Institute of Marine Science
+          (AIMS) reef monitoring data, recent coral health context, and spatial protected-area
+          information. Together, the views below explore where reefs are monitored, how live and
+          dead coral cover has changed over time, how benthic composition shifts, how ecological
+          indicators vary by sector, and how condition and disturbance measures relate to one
+          another.
+        </p>
+      </div>
     </header>
 
-    <main id="app">
-      <p id="load-status" class="load-status" aria-live="polite">Loading data…</p>
+    <main id="app" class="page-main">
+      <!-- 2. User guide -->
+      <section id="guide" class="section-card" aria-labelledby="guide-heading">
+        <h2 id="guide-heading">How to use this visualisation</h2>
+        <ul class="guide-list">
+          <li>Select a <strong>sector</strong> to update linked charts.</li>
+          <li><strong>Hover</strong> charts to inspect values.</li>
+          <li><strong>Click legends</strong> to focus layers.</li>
+          <li><strong>Click heatmap cells</strong> to inspect relationships.</li>
+        </ul>
+        <div class="data-note">
+          <h3>Data note</h3>
+          <p>
+            Charts draw on AIMS long-term monitoring records joined with reef coordinates and
+            marine protected-area context. Benthic cover indicators are available for a subset
+            of reef-year records; missing values are excluded from benthic and correlation views.
+            Sector codes follow AIMS management sectors across the Great Barrier Reef.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. Controls bar -->
+      <section id="controls" class="controls-bar" aria-label="Chart controls">
+        <p id="load-status" class="load-status" aria-live="polite">Loading data…</p>
+        <div class="controls-bar__inner">
+          <div class="control-group">
+            <label class="control-label" for="sector-control">Sector</label>
+            <div id="sector-control" class="control-slot" aria-label="Sector filter (coming soon)">
+              <!-- Phase 3: sector dropdown -->
+            </div>
+          </div>
+          <div class="control-group">
+            <span class="control-label" id="period-label">Period</span>
+            <div
+              id="period-control"
+              class="control-slot control-slot--buttons"
+              role="group"
+              aria-labelledby="period-label"
+            >
+              <!-- Phase 3: period buttons -->
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="indicator-control">Indicator</label>
+            <div id="indicator-control" class="control-slot" aria-label="Indicator selector (coming soon)">
+              <!-- Phase 3: indicator selector -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Graph 1: Reef map -->
+      <section id="map-section" class="section-card chart-section" aria-labelledby="map-heading">
+        <div class="chart-section__layout">
+          <div class="chart-section__narrative">
+            <h2 id="map-heading">Monitored reef locations</h2>
+            <p>
+              The map will show monitored reef locations across the Great Barrier Reef, coloured
+              by management sector. Points can be explored to see reef names and whether each
+              location falls within a marine protected area, providing spatial context for the
+              trends and comparisons in the charts below.
+            </p>
+            <p class="chart-instruction">Select a sector or hover a reef point to explore.</p>
+          </div>
+          <div
+            id="reef-map"
+            class="chart-container"
+            role="img"
+            aria-label="Reef map chart placeholder"
+          >
+            <p class="chart-placeholder">Reef map — chart placeholder</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Graph 2: Live/dead coral trend -->
+      <section id="trend-section" class="section-card chart-section" aria-labelledby="trend-heading">
+        <div class="chart-section__layout">
+          <div class="chart-section__narrative">
+            <h2 id="trend-heading">Live and dead coral cover over time</h2>
+            <p>
+              This chart will show long-term mean live coral and dead coral cover aggregated
+              across monitored reefs. Live coral reflects reef-building capacity; dead coral can
+              signal recent mortality or structural loss. Together they summarise broad condition
+              trends for the selected sector and period.
+            </p>
+            <p class="chart-instruction">Hover the lines to read yearly means.</p>
+          </div>
+          <div
+            id="overall-trend"
+            class="chart-container"
+            role="img"
+            aria-label="Live and dead coral trend chart placeholder"
+          >
+            <p class="chart-placeholder">Live / dead coral trend — chart placeholder</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Graph 3: Benthic cover -->
+      <section id="benthic-section" class="section-card chart-section" aria-labelledby="benthic-heading">
+        <div class="chart-section__layout">
+          <div class="chart-section__narrative">
+            <h2 id="benthic-heading">Benthic cover indicators</h2>
+            <p>
+              Hard coral, soft coral, and algae cover describe the benthic structure of monitored
+              reefs. Hard coral represents reef-building habitat; soft coral adds structural
+              diversity; algae can increase when grazing or coral loss shifts competitive balance.
+              The stacked view will show how these three indicators change over time.
+            </p>
+            <p class="data-caveat">
+              Cover values are stacked for visual comparison. They are yearly mean cover indicators
+              and are not constrained to sum to 100%.
+            </p>
+            <p class="chart-instruction">Hover bands to inspect yearly means.</p>
+          </div>
+          <div
+            id="benthic-composition"
+            class="chart-container"
+            role="img"
+            aria-label="Benthic composition chart placeholder"
+          >
+            <p class="chart-placeholder">Benthic stacked area — chart placeholder</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Graph 4: Ecological indicator by sector -->
+      <section id="indicator-section" class="section-card chart-section" aria-labelledby="indicator-chart-heading">
+        <div class="chart-section__layout">
+          <div class="chart-section__narrative">
+            <h2 id="indicator-chart-heading">Ecological indicator by sector</h2>
+            <p>
+              Reef condition varies across management sectors. This chart will let you switch
+              between hard coral, soft coral, and algae cover to compare sector-level patterns
+              over time, highlighting where indicators are relatively high or low within the
+              selected period.
+            </p>
+            <p class="chart-instruction">Use the indicator control above to change the measure.</p>
+          </div>
+          <div
+            id="ecological-indicator"
+            class="chart-container"
+            role="img"
+            aria-label="Ecological indicator by sector chart placeholder"
+          >
+            <p class="chart-placeholder">Ecological indicator — chart placeholder</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Graph 5: Correlation heatmap -->
+      <section id="heatmap-section" class="section-card chart-section" aria-labelledby="heatmap-heading">
+        <div class="chart-section__layout chart-section__layout--heatmap">
+          <div class="chart-section__narrative">
+            <h2 id="heatmap-heading">Relationships among indicators</h2>
+            <p>
+              The heatmap will summarise associations among reef condition and disturbance
+              indicators—including live coral, dead coral, crown-of-thorns starfish (COTS) counts,
+              and benthic cover measures—for the selected sector and period.
+            </p>
+            <p class="data-caveat">
+              Correlation indicates association, not causation.
+            </p>
+            <p class="chart-instruction">Click a cell to read the coefficient in the panel below.</p>
+            <div id="heatmap-explanation" class="heatmap-explanation-panel">
+              <p class="heatmap-explanation-panel__placeholder">
+                Selected correlation details will appear here.
+              </p>
+            </div>
+          </div>
+          <div
+            id="correlation-heatmap"
+            class="chart-container"
+            role="img"
+            aria-label="Correlation heatmap chart placeholder"
+          >
+            <p class="chart-placeholder">Correlation heatmap — chart placeholder</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. Summary / Footer -->
+      <footer id="summary" class="section-card summary-section" aria-labelledby="summary-heading">
+        <h2 id="summary-heading">Summary and references</h2>
+
+        <div class="summary-block">
+          <h3>Key messages</h3>
+          <p class="summary-placeholder">
+            Key narrative takeaways will be added after charts are implemented—for example, how
+            live coral and benthic indicators co-vary across sectors and time, and how protected-area
+            context frames spatial patterns.
+          </p>
+        </div>
+
+        <div class="summary-block">
+          <h3>Data sources</h3>
+          <ul class="source-list">
+            <li>AIMS Long-term Monitoring Program (reef-year indicators and coordinates)</li>
+            <li>MMP Coral 2024 (supplementary coral context)</li>
+            <li>CAPAD Marine 2024 (Collaborative Australian Protected Areas Database — marine areas)</li>
+          </ul>
+        </div>
+
+        <div class="summary-block">
+          <h3>Limitations</h3>
+          <ul class="limitations-list">
+            <li>Benthic cover is available for a subset of reef-year records; charts using these fields exclude incomplete rows.</li>
+            <li>Key Ecological Features (KEF) were not used as a direct overlap layer in this visualisation.</li>
+            <li>Protected-area status describes spatial context only and does not imply causation of reef condition.</li>
+          </ul>
+        </div>
+
+        <p class="footer-meta">
+          FIT5147 Data Visualisation Project — Australian Coral Reef Health Monitoring
+        </p>
+      </footer>
     </main>
 
     <script type="module" src="/src/main.js"></script>

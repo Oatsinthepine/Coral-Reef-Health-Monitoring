@@ -8,11 +8,27 @@ import * as CorrelationHeatmap from "./viz/CorrelationHeatmap.js";
 
 const statusEl = document.getElementById("load-status");
 
+/** Chart container selectors (Phase 4+ will render into these). */
+const CHART_MODULES = [
+  { module: ReefMap, selector: "#reef-map" },
+  { module: OverallTimeTrend, selector: "#overall-trend" },
+  { module: BenthicComposition, selector: "#benthic-composition" },
+  { module: EcologicalIndicator, selector: "#ecological-indicator" },
+  { module: CorrelationHeatmap, selector: "#correlation-heatmap" },
+];
+
 function setStatus(message, variant = "") {
   if (!statusEl) return;
   statusEl.textContent = message;
   statusEl.className = "load-status";
   if (variant) statusEl.classList.add(`load-status--${variant}`);
+}
+
+/** Mark chart placeholder boxes after data loads successfully. */
+function markChartContainersReady() {
+  document.querySelectorAll(".chart-container").forEach((el) => {
+    el.classList.add("chart-container--ready");
+  });
 }
 
 /** Minimal dispatch stub for chart modules (Phase 3 will expand). */
@@ -26,23 +42,16 @@ async function bootstrap() {
     const summary = logDataSummary(data);
     const state = createInitialState();
 
-    // Chart stubs — wired for Phase 0; containers added in Phase 2
-    const charts = [
-      ReefMap,
-      OverallTimeTrend,
-      BenthicComposition,
-      EcologicalIndicator,
-      CorrelationHeatmap,
-    ];
-
-    for (const chart of charts) {
-      if (typeof chart.init === "function") {
-        chart.init(null, data, state, dispatch);
+    for (const { module, selector } of CHART_MODULES) {
+      if (typeof module.init === "function") {
+        module.init(selector, data, state, dispatch);
       }
     }
 
+    markChartContainersReady();
+
     setStatus(
-      `Data ready: ${summary.masterRows} reef-year records, ${summary.reefPoints} reef locations, years ${summary.yearRange[0]}–${summary.yearRange[1]}. See browser console for details.`,
+      `Data ready — ${summary.masterRows.toLocaleString()} reef-year records, ${summary.reefPoints} reefs, ${summary.yearRange[0]}–${summary.yearRange[1]}.`,
       "ok"
     );
   } catch (err) {
