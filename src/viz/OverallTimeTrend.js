@@ -1,7 +1,7 @@
 export function init(containerSelector, data, state, dispatch) {
-  // Phase 4: live/dead coral trend line chart
+  console.debug("[OverallTimeTrend] init", containerSelector, state);
 }
 
 export function update(data, state) {
-  // Phase 4
+  console.debug("[OverallTimeTrend] update", state);
 }

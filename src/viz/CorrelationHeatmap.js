@@ -1,7 +1,7 @@
 export function init(containerSelector, data, state, dispatch) {
-  // Phase 6: correlation heatmap
+  console.debug("[CorrelationHeatmap] init", containerSelector, state);
 }
 
 export function update(data, state) {
-  // Phase 6
+  console.debug("[CorrelationHeatmap] update", state);
 }

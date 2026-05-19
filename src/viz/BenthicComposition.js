@@ -1,7 +1,7 @@
 export function init(containerSelector, data, state, dispatch) {
-  // Phase 4: benthic stacked area chart
+  console.debug("[BenthicComposition] init", containerSelector, state);
 }
 
 export function update(data, state) {
-  // Phase 4
+  console.debug("[BenthicComposition] update", state);
 }

@@ -1,7 +1,7 @@
 export function init(containerSelector, data, state, dispatch) {
-  // Phase 5: ecological indicator by sector
+  console.debug("[EcologicalIndicator] init", containerSelector, state);
 }
 
 export function update(data, state) {
-  // Phase 5
+  console.debug("[EcologicalIndicator] update", state);
 }

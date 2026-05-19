@@ -1,7 +1,7 @@
 export function init(containerSelector, data, state, dispatch) {
-  // Phase 7: reef point map
+  console.debug("[ReefMap] init", containerSelector, state);
 }
 
 export function update(data, state) {
-  // Phase 7
+  console.debug("[ReefMap] update", state);
 }

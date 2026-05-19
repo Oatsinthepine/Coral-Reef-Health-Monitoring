@@ -1,5 +1,6 @@
 import { loadAllData, logDataSummary } from "./dataloader.js";
 import { createInitialState } from "./state.js";
+import { initControls } from "./interaction/filters.js";
 import * as ReefMap from "./viz/ReefMap.js";
 import * as OverallTimeTrend from "./viz/OverallTimeTrend.js";
 import * as BenthicComposition from "./viz/BenthicComposition.js";
@@ -17,6 +18,9 @@ const CHART_MODULES = [
   { module: CorrelationHeatmap, selector: "#correlation-heatmap" },
 ];
 
+let appData = null;
+let appState = null;
+
 function setStatus(message, variant = "") {
   if (!statusEl) return;
   statusEl.textContent = message;
@@ -31,23 +35,42 @@ function markChartContainersReady() {
   });
 }
 
-/** Minimal dispatch stub for chart modules (Phase 3 will expand). */
-function dispatch(event, payload) {
-  console.debug("[dispatch]", event, payload);
+/** Notify all chart modules of a state change. */
+function updateAllCharts() {
+  if (!appData || !appState) return;
+
+  for (const { module } of CHART_MODULES) {
+    if (typeof module.update === "function") {
+      module.update(appData, appState);
+    }
+  }
+}
+
+/**
+ * Central event bus: update linked views when filters change.
+ * @param {string} event
+ * @param {object} [payload]
+ */
+function dispatch(event, payload = {}) {
+  console.log("[dispatch]", event, payload, appState);
+  updateAllCharts();
 }
 
 async function bootstrap() {
   try {
-    const data = await loadAllData();
-    const summary = logDataSummary(data);
-    const state = createInitialState();
+    appData = await loadAllData();
+    const summary = logDataSummary(appData);
+    appState = createInitialState();
+
+    initControls({ data: appData, state: appState, dispatch });
 
     for (const { module, selector } of CHART_MODULES) {
       if (typeof module.init === "function") {
-        module.init(selector, data, state, dispatch);
+        module.init(selector, appData, appState, dispatch);
       }
     }
 
+    updateAllCharts();
     markChartContainersReady();
 
     setStatus(

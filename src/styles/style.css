@@ -179,21 +179,76 @@ p:last-child {
 
 .control-slot {
   min-height: 2.25rem;
+}
+
+/* —— Form controls —— */
+.control-select {
+  width: 100%;
+  min-height: 2.25rem;
   padding: var(--space-sm) var(--space-md);
-  border: 1px dashed var(--color-border);
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 6px;
-  background: #fafbfc;
+  cursor: pointer;
+  appearance: auto;
+}
+
+.control-select:hover {
+  border-color: #b0bec8;
+}
+
+.control-select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(13, 110, 140, 0.2);
+}
+
+.period-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.period-btn {
+  flex: 1 1 auto;
+  min-width: 4.5rem;
+  min-height: 2.25rem;
+  padding: var(--space-xs) var(--space-sm);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--color-muted);
-  font-size: 0.85rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 
-.control-slot--buttons {
-  min-height: 2.5rem;
+.period-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
-.control-slot:empty::before {
-  content: "Control coming in Phase 3";
-  opacity: 0.7;
+.period-btn:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(13, 110, 140, 0.2);
+}
+
+.period-btn--active {
+  color: var(--color-surface);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.period-btn--active:hover {
+  color: var(--color-surface);
+  background: #0a5a73;
+  border-color: #0a5a73;
 }
 
 .load-status {
@@ -355,6 +410,10 @@ p:last-child {
 
   .controls-bar__inner {
     grid-template-columns: 1fr;
+  }
+
+  .period-btn {
+    flex: 1 1 calc(50% - var(--space-xs));
   }
 }
 

@@ -34,3 +34,28 @@ export const SECTOR_LABELS = {
 export function sectorLabel(code) {
   return SECTOR_LABELS[code] ?? code;
 }
+
+/** Filter master rows by sector (All = no filter). */
+export function filterBySector(rows, sector) {
+  if (!sector || sector === "All") return rows;
+  return rows.filter((r) => r.SECTOR === sector);
+}
+
+/** Filter master rows by inclusive report year range. */
+export function filterByYearRange(rows, [start, end]) {
+  if (start == null || end == null) return rows;
+  return rows.filter(
+    (r) =>
+      r.REPORT_YEAR !== null &&
+      r.REPORT_YEAR >= start &&
+      r.REPORT_YEAR <= end
+  );
+}
+
+/** Apply sector and year range filters from shared state. */
+export function filterMasterRows(rows, state) {
+  return filterByYearRange(
+    filterBySector(rows, state.selectedSector),
+    state.selectedYearRange
+  );
+}
