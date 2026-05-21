@@ -342,6 +342,104 @@ p:last-child {
   color: #1e5c32;
 }
 
+.chart-container--has-chart {
+  display: block;
+  padding: 0;
+  background: var(--color-surface);
+}
+
+.chart-container--has-chart .chart-placeholder {
+  display: none;
+}
+
+/* —— Trend chart (Graph 2) —— */
+.trend-chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.trend-chart-svg .chart-title {
+  font-size: 14px;
+  font-weight: 700;
+  fill: var(--color-text);
+}
+
+.trend-chart-svg .chart-subtitle {
+  font-size: 11px;
+  fill: var(--color-muted);
+}
+
+.trend-chart-svg .axis {
+  font-size: 11px;
+  color: var(--color-muted);
+}
+
+.trend-chart-svg .axis path,
+.trend-chart-svg .axis line {
+  stroke: var(--color-border);
+}
+
+.trend-chart-svg .axis-label {
+  font-size: 11px;
+  fill: var(--color-muted);
+}
+
+.trend-chart-svg .chart-empty-message {
+  font-size: 13px;
+  fill: var(--color-muted);
+}
+
+.trend-line {
+  transition: opacity 0.2s ease;
+}
+
+.trend-point {
+  transition: opacity 0.2s ease, r 0.15s ease;
+}
+
+.trend-point--highlight {
+  stroke: var(--color-text);
+  stroke-width: 1.5px;
+}
+
+.trend-guide-line {
+  stroke: var(--color-muted);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  pointer-events: none;
+}
+
+.trend-legend text {
+  font-size: 11px;
+  fill: var(--color-text);
+}
+
+.trend-legend-item--inactive {
+  opacity: 0.45;
+}
+
+.trend-legend-item--inactive text {
+  fill: var(--color-muted);
+}
+
+.chart-tooltip {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  max-width: 240px;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  box-shadow: var(--shadow-card);
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
 /* —— Heatmap explanation panel —— */
 .heatmap-explanation-panel {
   margin-top: var(--space-md);
