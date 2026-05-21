@@ -109,17 +109,6 @@ function buildRadiusScale(points) {
   return { radius, countMin, countMedian, countP95, countMax };
 }
 
-function logCountSummary(state, stats) {
-  console.log("[EcologicalIndicator] count scale", {
-    selectedIndicator: state.selectedIndicator,
-    selectedYearRange: [...state.selectedYearRange],
-    countMin: stats.countMin,
-    countMedian: stats.countMedian,
-    countP95: stats.countP95,
-    countMax: stats.countMax,
-  });
-}
-
 function sectorColor(sector) {
   return SECTOR_COLORS[sector] ?? "#888888";
 }
@@ -294,7 +283,6 @@ export function update(data, state) {
 
   const countStats = buildRadiusScale(points);
   const { radius } = countStats;
-  logCountSummary(state, countStats);
 
   const sectorsInView = [...new Set(points.map((d) => d.sector))].sort();
   const sectorOffset = d3.scalePoint().domain(sectorsInView).range([-8, 8]);

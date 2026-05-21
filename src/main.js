@@ -52,8 +52,6 @@ function updateAllCharts() {
  * @param {object} [payload]
  */
 function dispatch(event, payload = {}) {
-  console.log("[dispatch]", event, payload, appState);
-
   if (event === "sectorChange" && appState) {
     syncControlsFromState(appState);
   }
