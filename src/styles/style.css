@@ -490,6 +490,79 @@ p:last-child {
   fill: var(--color-muted);
 }
 
+/* —— Ecological indicator chart (Graph 4) —— */
+.indicator-chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.indicator-chart-svg .chart-title {
+  font-size: 14px;
+  font-weight: 700;
+  fill: var(--color-text);
+}
+
+.indicator-chart-svg .chart-subtitle {
+  font-size: 11px;
+  fill: var(--color-muted);
+}
+
+.indicator-chart-svg .axis {
+  font-size: 11px;
+  color: var(--color-muted);
+}
+
+.indicator-chart-svg .axis path,
+.indicator-chart-svg .axis line {
+  stroke: var(--color-border);
+}
+
+.indicator-chart-svg .axis-label {
+  font-size: 11px;
+  fill: var(--color-muted);
+}
+
+.indicator-chart-svg .chart-empty-message {
+  font-size: 13px;
+  fill: var(--color-muted);
+}
+
+.indicator-bubble {
+  transition: fill-opacity 0.2s ease, stroke-width 0.15s ease;
+}
+
+.indicator-trend-line {
+  pointer-events: none;
+}
+
+.indicator-legend-note {
+  font-size: 9px;
+  fill: var(--color-muted);
+}
+
+.indicator-size-legend-title {
+  font-size: 9px;
+  font-weight: 600;
+  fill: var(--color-muted);
+}
+
+.indicator-size-legend-value {
+  font-size: 9px;
+  fill: var(--color-text);
+}
+
+.indicator-size-legend-label {
+  font-size: 8px;
+  fill: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.indicator-size-legend-circle {
+  pointer-events: none;
+}
+
 .chart-tooltip {
   position: absolute;
   z-index: 10;
