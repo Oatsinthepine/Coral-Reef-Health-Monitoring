@@ -423,6 +423,73 @@ p:last-child {
   fill: var(--color-muted);
 }
 
+/* —— Benthic chart (Graph 3) —— */
+.benthic-chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.benthic-chart-svg .chart-title {
+  font-size: 14px;
+  font-weight: 700;
+  fill: var(--color-text);
+}
+
+.benthic-chart-svg .chart-subtitle {
+  font-size: 11px;
+  fill: var(--color-muted);
+}
+
+.benthic-chart-svg .axis {
+  font-size: 11px;
+  color: var(--color-muted);
+}
+
+.benthic-chart-svg .axis path,
+.benthic-chart-svg .axis line {
+  stroke: var(--color-border);
+}
+
+.benthic-chart-svg .axis-label {
+  font-size: 11px;
+  fill: var(--color-muted);
+}
+
+.benthic-chart-svg .chart-empty-message {
+  font-size: 13px;
+  fill: var(--color-muted);
+}
+
+.benthic-area {
+  transition: opacity 0.2s ease;
+}
+
+.benthic-area-line {
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.benthic-guide-line {
+  stroke: var(--color-muted);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  pointer-events: none;
+}
+
+.benthic-legend text {
+  font-size: 11px;
+  fill: var(--color-text);
+}
+
+.benthic-legend-item--inactive {
+  opacity: 0.45;
+}
+
+.benthic-legend-item--inactive text {
+  fill: var(--color-muted);
+}
+
 .chart-tooltip {
   position: absolute;
   z-index: 10;
