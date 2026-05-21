@@ -1,12 +1,18 @@
 import * as d3 from "d3";
 
-const MARGIN = { top: 56, right: 72, bottom: 110, left: 100 };
-const CHART_HEIGHT = 520;
+const MARGIN = { top: 56, right: 170, bottom: 120, left: 160 };
+const CHART_HEIGHT = 500;
+const GRID_MAX = 440;
 
+/**
+ * Diverging Purple-Orange palette: negative correlations → purple,
+ * near-zero → light neutral, positive correlations → orange.
+ * `1 - t` flips the default PuOr direction so purple stays on the negative end.
+ */
 const COLOR_SCALE = d3
-  .scaleLinear()
+  .scaleDiverging()
   .domain([-1, 0, 1])
-  .range(["#2166ac", "#f7f7f7", "#b2182b"])
+  .interpolator((t) => d3.interpolatePuOr(1 - t))
   .clamp(true);
 
 const chart = {
@@ -48,7 +54,7 @@ function formatR(value) {
 }
 
 function labelFill(pearsonR) {
-  return Math.abs(pearsonR ?? 0) > 0.45 ? "#ffffff" : "#1a2b3c";
+  return Math.abs(pearsonR ?? 0) > 0.6 ? "#ffffff" : "#1a2b3c";
 }
 
 /** Remove repeated causation caveat from interpretation copy. */
@@ -116,11 +122,11 @@ function hideTooltip(tooltip) {
   tooltip.style("opacity", 0);
 }
 
-function drawColorLegend(svg, width, height) {
+function drawColorLegend(svg, gridLeft, gridSize) {
   const legendWidth = 14;
-  const legendHeight = 120;
-  const legendX = width - MARGIN.right + 10;
-  const legendY = MARGIN.top + 20;
+  const legendHeight = Math.min(160, gridSize - 40);
+  const legendX = gridLeft + gridSize + 32;
+  const legendY = MARGIN.top + 40;
 
   const legend = svg
     .append("g")
@@ -230,6 +236,10 @@ export function update(data, state) {
   const innerWidth = width - MARGIN.left - MARGIN.right;
   const innerHeight = height - MARGIN.top - MARGIN.bottom;
 
+  // Cap the heatmap grid so the 6×6 matrix stays compact and readable
+  // even when the section card is very wide.
+  const gridSize = Math.max(280, Math.min(GRID_MAX, innerWidth, innerHeight));
+
   const svg = chart.container
     .append("svg")
     .attr("class", "heatmap-chart-svg")
@@ -260,8 +270,8 @@ export function update(data, state) {
     .append("g")
     .attr("transform", `translate(${MARGIN.left},${MARGIN.top})`);
 
-  const x = d3.scaleBand().domain(colLabels).range([0, innerWidth]).padding(0.06);
-  const y = d3.scaleBand().domain(rowLabels).range([0, innerHeight]).padding(0.06);
+  const x = d3.scaleBand().domain(colLabels).range([0, gridSize]).padding(0.06);
+  const y = d3.scaleBand().domain(rowLabels).range([0, gridSize]).padding(0.06);
 
   // —— Cells ——
   const cells = g
@@ -347,7 +357,7 @@ export function update(data, state) {
   // —— Axes ——
   g.append("g")
     .attr("class", "axis axis--x")
-    .attr("transform", `translate(0,${innerHeight})`)
+    .attr("transform", `translate(0,${gridSize})`)
     .call(d3.axisBottom(x))
     .selectAll("text")
     .attr("class", "heatmap-axis-label")
@@ -362,5 +372,5 @@ export function update(data, state) {
     .selectAll("text")
     .attr("class", "heatmap-axis-label");
 
-  drawColorLegend(svg, width, height);
+  drawColorLegend(svg, MARGIN.left, gridSize);
 }
