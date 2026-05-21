@@ -1,6 +1,6 @@
 import { loadAllData, logDataSummary } from "./dataloader.js";
 import { createInitialState } from "./state.js";
-import { initControls } from "./interaction/filters.js";
+import { initControls, syncControlsFromState } from "./interaction/filters.js";
 import * as ReefMap from "./viz/ReefMap.js";
 import * as OverallTimeTrend from "./viz/OverallTimeTrend.js";
 import * as BenthicComposition from "./viz/BenthicComposition.js";
@@ -53,6 +53,11 @@ function updateAllCharts() {
  */
 function dispatch(event, payload = {}) {
   console.log("[dispatch]", event, payload, appState);
+
+  if (event === "sectorChange" && appState) {
+    syncControlsFromState(appState);
+  }
+
   updateAllCharts();
 }
 

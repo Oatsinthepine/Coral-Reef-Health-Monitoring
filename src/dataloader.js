@@ -6,6 +6,7 @@ const DATA_PATHS = {
   reefPoints: "/data/reef_points.csv",
   spatialContext: "/data/reef_spatial_context.csv",
   correlationMatrix: "/data/correlation_matrix_long.csv",
+  capadGbr: "/data/capad_gbr_simplified.geojson",
 };
 
 /** Numeric fields on the master reef-year table. */
@@ -100,8 +101,28 @@ function uniqueValues(rows, field) {
 }
 
 /**
- * Load and normalise primary CSV datasets.
- * CAPAD GeoJSON is deferred to the map phase (large file).
+ * Load optional JSON/GeoJSON; warn and return null on failure.
+ * @param {string} path
+ * @param {string} label
+ */
+export async function loadOptionalJson(path, label) {
+  try {
+    const data = await d3.json(path);
+    if (data == null) {
+      console.warn(`[Coral DVP] Optional layer not loaded (${label}): empty response`);
+      return null;
+    }
+    return data;
+  } catch (err) {
+    console.warn(
+      `[Coral DVP] Optional layer not loaded (${label}): ${err.message}`
+    );
+    return null;
+  }
+}
+
+/**
+ * Load and normalise primary CSV datasets plus optional CAPAD GeoJSON.
  */
 export async function loadAllData() {
   const [masterRaw, reefPointsRaw, spatialContextRaw, correlationMatrixRaw] =
@@ -112,17 +133,23 @@ export async function loadAllData() {
       d3.csv(DATA_PATHS.correlationMatrix),
     ]);
 
+  const capadGbr = await loadOptionalJson(
+    DATA_PATHS.capadGbr,
+    "CAPAD GBR simplified"
+  );
+
   const master = masterRaw.map(normalizeMasterRow);
   const reefPoints = reefPointsRaw.map(normalizeReefPointRow);
   const spatialContext = spatialContextRaw.map(normalizeSpatialContextRow);
   const correlationMatrix = correlationMatrixRaw.map(normalizeCorrelationMatrixRow);
 
-  return { master, reefPoints, spatialContext, correlationMatrix };
+  return { master, reefPoints, spatialContext, correlationMatrix, capadGbr };
 }
 
 /** Print a concise summary to the console after load. */
 export function logDataSummary(data) {
-  const { master, reefPoints, spatialContext, correlationMatrix } = data;
+  const { master, reefPoints, spatialContext, correlationMatrix, capadGbr } =
+    data;
 
   const years = master
     .map((r) => r.REPORT_YEAR)
@@ -160,6 +187,11 @@ export function logDataSummary(data) {
   const pearsonMin = d3.min(pearsonValues);
   const pearsonMax = d3.max(pearsonValues);
 
+  const capadGbrLoaded = capadGbr != null;
+  const capadGbrFeatures = capadGbrLoaded
+    ? (capadGbr.features?.length ?? 0)
+    : 0;
+
   console.group("[Coral DVP] Data loaded");
   console.table({
     masterRows: master.length,
@@ -174,6 +206,8 @@ export function logDataSummary(data) {
     correlationVariables,
     pearsonRMin: pearsonMin,
     pearsonRMax: pearsonMax,
+    capadGbrLoaded,
+    capadGbrFeatures,
   });
   console.log("Sectors:", sectors.join(", "));
   console.log("Missing benthic (any of 3 cols):", benthicMissingAny);
@@ -188,5 +222,7 @@ export function logDataSummary(data) {
     correlationMatrixRows: correlationMatrix.length,
     correlationVariables,
     pearsonRRange: [pearsonMin, pearsonMax],
+    capadGbrLoaded,
+    capadGbrFeatures,
   };
 }

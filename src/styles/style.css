@@ -352,6 +352,100 @@ p:last-child {
   display: none;
 }
 
+/* —— Reef map (Graph 1) —— */
+.reef-map-container {
+  position: relative;
+  min-height: 420px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.reef-map-leaflet {
+  width: 100%;
+  height: 420px;
+  border-radius: var(--radius);
+  background: #eef4f9;
+}
+
+.reef-map-reset-btn {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  z-index: 500;
+  padding: var(--space-xs) var(--space-sm);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+}
+
+.reef-map-reset-btn:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.reef-map-reset-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(13, 110, 140, 0.25);
+}
+
+.reef-map-note {
+  margin: var(--space-sm) var(--space-md) var(--space-sm);
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.reef-map-tooltip.leaflet-tooltip {
+  padding: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  box-shadow: var(--shadow-card);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+.reef-map-tooltip.leaflet-tooltip:before {
+  border-top-color: var(--color-border);
+}
+
+.reef-popup {
+  padding: var(--space-sm) var(--space-md);
+  min-width: 200px;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.reef-popup__title {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+
+.reef-popup__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: 1px 0;
+  color: var(--color-text);
+}
+
+.reef-popup__row > span:first-child {
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.reef-popup__row > span:last-child {
+  text-align: right;
+}
+
 /* —— Trend chart (Graph 2) —— */
 .trend-chart-svg {
   display: block;

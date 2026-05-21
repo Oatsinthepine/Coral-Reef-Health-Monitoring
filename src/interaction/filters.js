@@ -111,3 +111,25 @@ export function initControls({ data, state, dispatch }) {
 
   indicatorEl.appendChild(indicatorSelect);
 }
+
+/**
+ * Sync control UI to match shared state.
+ * Call after non-DOM driven state changes (e.g. map click).
+ */
+export function syncControlsFromState(state) {
+  const sectorSelect = document.getElementById("sector-select");
+  if (sectorSelect && sectorSelect.value !== state.selectedSector) {
+    sectorSelect.value = state.selectedSector;
+  }
+
+  const indicatorSelect = document.getElementById("indicator-select");
+  if (indicatorSelect && indicatorSelect.value !== state.selectedIndicator) {
+    indicatorSelect.value = state.selectedIndicator;
+  }
+
+  document.querySelectorAll(".period-btn").forEach((btn) => {
+    const active = btn.dataset.period === state.selectedPeriod;
+    btn.classList.toggle("period-btn--active", active);
+    btn.setAttribute("aria-pressed", String(active));
+  });
+}
