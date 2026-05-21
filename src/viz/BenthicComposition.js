@@ -5,9 +5,9 @@ const MARGIN = { top: 56, right: 28, bottom: 48, left: 56 };
 const CHART_HEIGHT = 420;
 
 const LAYERS = [
-  { key: "hard_coral_cover", label: "Hard coral", color: "#0d6e8c" },
-  { key: "soft_coral_cover", label: "Soft coral", color: "#7b6fa8" },
-  { key: "algae_cover", label: "Algae", color: "#5a9a4e" },
+  { key: "hard_coral_cover", label: "Hard coral", color: "#2A9D8F" },
+  { key: "soft_coral_cover", label: "Soft coral", color: "#B68ACB" },
+  { key: "algae_cover", label: "Algae", color: "#8AB17D" },
 ];
 
 /** Module state (legend focus is local; also mirrored to state.selectedBenthicLayer). */
@@ -116,7 +116,7 @@ function hideTooltip(tooltip) {
 }
 
 function layerOpacity(layerKey) {
-  if (!chart.legendFocus) return 0.82;
+  if (!chart.legendFocus) return 0.8;
   return chart.legendFocus === layerKey ? 0.92 : 0.18;
 }
 
@@ -268,8 +268,8 @@ export function update(data, state) {
     .attr("class", (d) => `benthic-area-line benthic-area-line--${d.key}`)
     .attr("fill", "none")
     .attr("stroke", (d) => layerColor[d.key])
-    .attr("stroke-width", 1.5)
-    .attr("opacity", (d) => (chart.legendFocus && chart.legendFocus !== d.key ? 0.25 : 0.9))
+    .attr("stroke-width", 1.3)
+    .attr("opacity", (d) => (chart.legendFocus && chart.legendFocus !== d.key ? 0.22 : 0.8))
     .attr(
       "d",
       d3

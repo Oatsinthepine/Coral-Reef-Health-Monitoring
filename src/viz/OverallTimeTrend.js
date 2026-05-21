@@ -5,8 +5,8 @@ const MARGIN = { top: 56, right: 28, bottom: 48, left: 56 };
 const CHART_HEIGHT = 420;
 
 const COLORS = {
-  live: "#0d6e8c",
-  dead: "#c45c3e",
+  live: "#1F7898",
+  dead: "#D46A4C",
 };
 
 /** Module state (legend focus is local, not global app state). */
