@@ -23,6 +23,7 @@ const chart = {
   mapEl: null,
   map: null,
   capadLayer: null,
+  baseTileLayer: null,
   markersLayer: null,
   markerEntries: [], // [{ marker, reef }]
   dispatch: null,
@@ -170,17 +171,30 @@ export function init(containerSelector, data, state, dispatch) {
     zoomControl: true,
     attributionControl: true,
     scrollWheelZoom: false,
+    preferCanvas: true,
   });
+
+  // Lightweight base map for geographic context. If tiles cannot be loaded,
+  // the CAPAD polygons and reef markers still render on the local map canvas.
+  chart.baseTileLayer = L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+      maxZoom: 10,
+      minZoom: 4,
+      opacity: 0.55,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }
+  ).addTo(chart.map);
 
   // CAPAD polygon layer (optional, no hover).
   if (data.capadGbr?.features?.length) {
     chart.capadLayer = L.geoJSON(data.capadGbr, {
       style: () => ({
-        color: "#4e79a7",
-        weight: 0.7,
-        opacity: 0.7,
-        fillColor: "#9ecae1",
-        fillOpacity: 0.25,
+        color: "#3f7fb3",
+        weight: 0.65,
+        opacity: 0.65,
+        fillColor: "#8fc7df",
+        fillOpacity: 0.18,
       }),
       interactive: false,
     }).addTo(chart.map);
@@ -202,13 +216,15 @@ export function init(containerSelector, data, state, dispatch) {
     });
 
     marker.bindTooltip(popupHtml(reef), {
-      direction: "top",
-      offset: [0, -4],
+      direction: "auto",
+      offset: [10, 0],
       className: "reef-map-tooltip",
       sticky: true,
+      opacity: 0.98,
     });
 
     marker.on("click", () => {
+      marker.openTooltip();
       state.selectedSector = reef.SECTOR;
       if (chart.dispatch) {
         chart.dispatch("sectorChange", {
@@ -225,7 +241,7 @@ export function init(containerSelector, data, state, dispatch) {
 
   // Fit to reef points only (per spec — not CAPAD bounds).
   if (latLngs.length > 0) {
-    chart.map.fitBounds(latLngs, { padding: [20, 20] });
+    chart.map.fitBounds(latLngs, { padding: [28, 28], maxZoom: 7 });
   } else {
     // Sensible default if no points.
     chart.map.setView([-18.5, 147], 5);
