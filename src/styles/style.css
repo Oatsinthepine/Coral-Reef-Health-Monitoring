@@ -5,25 +5,25 @@
 }
 
 :root {
-  --color-bg: #f4f7fa;
-  --color-surface: #ffffff;
-  --color-text: #1a2b3c;
-  --color-muted: #5a6b7d;
-  --color-border: #d4dde6;
-  --color-accent: #0d6e8c;
-  --color-accent-soft: #e8f4f8;
-  --color-caveat-bg: #fff8e6;
-  --color-caveat-border: #e8d9a8;
+  --color-bg: #f3f8fb;
+  --color-surface: rgba(255, 255, 255, 0.96);
+  --color-text: #163042;
+  --color-muted: #4e667a;
+  --color-border: #c9dbe6;
+  --color-accent: #1f7898;
+  --color-accent-soft: #e5f4f8;
+  --color-caveat-bg: #fff8e8;
+  --color-caveat-border: #e1c678;
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --max-width: 1500px;
   --chart-min-height: 430px;
-  --radius: 8px;
+  --radius: 10px;
   --space-xs: 0.35rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
   --space-xl: 2rem;
-  --shadow-card: 0 1px 3px rgba(26, 43, 60, 0.06);
+  --shadow-card: 0 8px 24px rgba(28, 73, 92, 0.07);
 }
 
 html {
@@ -36,7 +36,12 @@ body {
   font-family: var(--font-sans);
   line-height: 1.6;
   color: var(--color-text);
-  background: var(--color-bg);
+  background:
+    radial-gradient(circle at top left, rgba(136, 203, 220, 0.28), transparent 34rem),
+    linear-gradient(180deg, #eaf6fb 0%, #f5f8fb 34%, #f7f9fb 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* —— Typography —— */
@@ -74,8 +79,8 @@ p:last-child {
 
 /* —— Page shell —— */
 .page-header {
-  background: linear-gradient(180deg, #e8f4f8 0%, var(--color-bg) 100%);
-  border-bottom: 1px solid var(--color-border);
+  background: linear-gradient(135deg, #d9f0f7 0%, #edf8fb 48%, #f6fbfd 100%);
+  border-bottom: 1px solid rgba(119, 166, 184, 0.35);
 }
 
 .page-header__inner,
@@ -92,10 +97,11 @@ p:last-child {
 }
 
 .page-main {
+  padding-top: var(--space-lg);
   padding-bottom: var(--space-xl);
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: 2rem;
 }
 
 .subtitle {
@@ -117,6 +123,7 @@ p:last-child {
   border-radius: var(--radius);
   box-shadow: var(--shadow-card);
   padding: var(--space-lg);
+  backdrop-filter: saturate(115%);
 }
 
 /* —— User guide —— */
@@ -136,7 +143,7 @@ p:last-child {
 .data-note {
   padding: var(--space-md);
   background: var(--color-accent-soft);
-  border: 1px solid #c5e3ed;
+  border: 1px solid #bddde8;
   border-radius: var(--radius);
 }
 
@@ -150,6 +157,7 @@ p:last-child {
 .controls-bar {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
+  border-top: 3px solid rgba(31, 120, 152, 0.30);
   border-radius: var(--radius);
   box-shadow: var(--shadow-card);
   padding: var(--space-md) var(--space-lg);
@@ -337,13 +345,8 @@ p:last-child {
 }
 
 .chart-container--ready {
-  border-color: #b8d4be;
-  background: linear-gradient(135deg, #f8fcf9 0%, #fafbfc 100%);
-}
-
-.chart-container--ready .chart-placeholder::after {
-  content: " · data loaded";
-  color: #1e5c32;
+  border-color: var(--color-border);
+  background: #ffffff;
 }
 
 .chart-container--has-chart {
