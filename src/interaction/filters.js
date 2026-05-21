@@ -31,7 +31,7 @@ export function initControls({ data, state, dispatch }) {
   const sectorSelect = document.createElement("select");
   sectorSelect.id = "sector-select";
   sectorSelect.className = "control-select";
-  sectorSelect.setAttribute("aria-label", "Select sector");
+  sectorSelect.setAttribute("aria-labelledby", "sector-label");
 
   const allSectorOpt = document.createElement("option");
   allSectorOpt.value = "All";
@@ -56,7 +56,7 @@ export function initControls({ data, state, dispatch }) {
   // —— Period buttons ——
   periodEl.className = "period-buttons";
   periodEl.setAttribute("role", "group");
-  periodEl.setAttribute("aria-label", "Select period");
+  periodEl.setAttribute("aria-labelledby", "period-label");
 
   const periodLabels = Object.keys(PERIOD_DEFINITIONS);
 
@@ -94,7 +94,7 @@ export function initControls({ data, state, dispatch }) {
   const indicatorSelect = document.createElement("select");
   indicatorSelect.id = "indicator-select";
   indicatorSelect.className = "control-select";
-  indicatorSelect.setAttribute("aria-label", "Select ecological indicator");
+  indicatorSelect.setAttribute("aria-labelledby", "indicator-label");
 
   for (const [key, label] of Object.entries(INDICATOR_DEFINITIONS)) {
     const opt = document.createElement("option");

@@ -129,6 +129,7 @@ export function init(containerSelector, data, state, dispatch) {
   chart.container = d3.select(containerSelector);
   chart.container.selectAll("*").remove();
   chart.container.classed("chart-container--has-chart", true);
+  chart.container.attr("aria-busy", "false");
 
   chart.tooltip = chart.container
     .append("div")

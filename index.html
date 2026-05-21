@@ -52,27 +52,16 @@
         <p id="load-status" class="load-status" aria-live="polite">Loading data…</p>
         <div class="controls-bar__inner">
           <div class="control-group">
-            <label class="control-label" for="sector-control">Sector</label>
-            <div id="sector-control" class="control-slot" aria-label="Sector filter (coming soon)">
-              <!-- Phase 3: sector dropdown -->
-            </div>
+            <span class="control-label" id="sector-label">Sector</span>
+            <div id="sector-control" class="control-slot"></div>
           </div>
           <div class="control-group">
             <span class="control-label" id="period-label">Period</span>
-            <div
-              id="period-control"
-              class="control-slot control-slot--buttons"
-              role="group"
-              aria-labelledby="period-label"
-            >
-              <!-- Phase 3: period buttons -->
-            </div>
+            <div id="period-control" class="control-slot control-slot--buttons"></div>
           </div>
           <div class="control-group">
-            <label class="control-label" for="indicator-control">Indicator</label>
-            <div id="indicator-control" class="control-slot" aria-label="Indicator selector (coming soon)">
-              <!-- Phase 3: indicator selector -->
-            </div>
+            <span class="control-label" id="indicator-label">Indicator</span>
+            <div id="indicator-control" class="control-slot"></div>
           </div>
         </div>
       </section>
@@ -83,10 +72,9 @@
           <div class="chart-section__narrative">
             <h2 id="map-heading">Monitored reef locations</h2>
             <p>
-              The map will show monitored reef locations across the Great Barrier Reef, coloured
-              by management sector. Points can be explored to see reef names and whether each
-              location falls within a marine protected area, providing spatial context for the
-              trends and comparisons in the charts below.
+              The map shows monitored reef locations across the Great Barrier Reef, coloured
+              by management sector. Hover points to read reef names and protected-area status,
+              or click a point to filter the linked charts by sector.
             </p>
             <p class="chart-instruction">Select a sector or hover a reef point to explore.</p>
           </div>
@@ -94,10 +82,8 @@
             id="reef-map"
             class="chart-container"
             role="img"
-            aria-label="Reef map chart placeholder"
-          >
-            <p class="chart-placeholder">Reef map — chart placeholder</p>
-          </div>
+            aria-label="Interactive map of monitored reef locations across the Great Barrier Reef, coloured by sector with marine protected-area context"
+          ></div>
         </div>
       </section>
 
@@ -107,21 +93,14 @@
           <div class="chart-section__narrative">
             <h2 id="trend-heading">Live and dead coral cover over time</h2>
             <p>
-              This chart will show long-term mean live coral and dead coral cover aggregated
+              This chart shows long-term mean live coral and dead coral cover aggregated
               across monitored reefs. Live coral reflects reef-building capacity; dead coral can
               signal recent mortality or structural loss. Together they summarise broad condition
               trends for the selected sector and period.
             </p>
             <p class="chart-instruction">Hover the lines to read yearly means.</p>
           </div>
-          <div
-            id="overall-trend"
-            class="chart-container"
-            role="img"
-            aria-label="Live and dead coral trend chart placeholder"
-          >
-            <p class="chart-placeholder">Live / dead coral trend — chart placeholder</p>
-          </div>
+          <div id="overall-trend" class="chart-container" aria-busy="true"></div>
         </div>
       </section>
 
@@ -134,7 +113,7 @@
               Hard coral, soft coral, and algae cover describe the benthic structure of monitored
               reefs. Hard coral represents reef-building habitat; soft coral adds structural
               diversity; algae can increase when grazing or coral loss shifts competitive balance.
-              The stacked view will show how these three indicators change over time.
+              The stacked view shows how these three indicators change over time.
             </p>
             <p class="data-caveat">
               Cover values are stacked for visual comparison. They are yearly mean cover indicators
@@ -142,14 +121,7 @@
             </p>
             <p class="chart-instruction">Hover over a year to inspect all benthic cover indicators.</p>
           </div>
-          <div
-            id="benthic-composition"
-            class="chart-container"
-            role="img"
-            aria-label="Benthic composition chart placeholder"
-          >
-            <p class="chart-placeholder">Benthic stacked area — chart placeholder</p>
-          </div>
+          <div id="benthic-composition" class="chart-container" aria-busy="true"></div>
         </div>
       </section>
 
@@ -159,21 +131,13 @@
           <div class="chart-section__narrative">
             <h2 id="indicator-chart-heading">Ecological indicator by sector</h2>
             <p>
-              Reef condition varies across management sectors. This chart will let you switch
-              between hard coral, soft coral, and algae cover to compare sector-level patterns
-              over time, highlighting where indicators are relatively high or low within the
-              selected period.
+              Reef condition varies across management sectors. Switch between hard coral, soft
+              coral, and algae cover to compare sector-level patterns over time and see where
+              indicators are relatively high or low within the selected period.
             </p>
             <p class="chart-instruction">Use the indicator control above to change the measure.</p>
           </div>
-          <div
-            id="ecological-indicator"
-            class="chart-container"
-            role="img"
-            aria-label="Ecological indicator by sector chart placeholder"
-          >
-            <p class="chart-placeholder">Ecological indicator — chart placeholder</p>
-          </div>
+          <div id="ecological-indicator" class="chart-container" aria-busy="true"></div>
         </div>
       </section>
 
@@ -183,7 +147,7 @@
           <div class="chart-section__narrative">
             <h2 id="heatmap-heading">Relationships among indicators</h2>
             <p>
-              The heatmap will summarise overall associations among reef condition and disturbance
+              The heatmap summarises overall associations among reef condition and disturbance
               indicators—including live coral, dead coral, crown-of-thorns starfish (COTS) counts,
               and benthic cover measures—using complete reef-year cases.
             </p>
@@ -193,18 +157,11 @@
             <p class="chart-instruction">Click a cell to read the coefficient in the panel below.</p>
             <div id="heatmap-explanation" class="heatmap-explanation-panel">
               <p class="heatmap-explanation-panel__placeholder">
-                Selected correlation details will appear here.
+                Click a cell in the heatmap to inspect the selected relationship.
               </p>
             </div>
           </div>
-          <div
-            id="correlation-heatmap"
-            class="chart-container"
-            role="img"
-            aria-label="Correlation heatmap chart placeholder"
-          >
-            <p class="chart-placeholder">Correlation heatmap — chart placeholder</p>
-          </div>
+          <div id="correlation-heatmap" class="chart-container" aria-busy="true"></div>
         </div>
       </section>
 
@@ -214,11 +171,28 @@
 
         <div class="summary-block">
           <h3>Key messages</h3>
-          <p class="summary-placeholder">
-            Key narrative takeaways will be added after charts are implemented—for example, how
-            live coral and benthic indicators co-vary across sectors and time, and how protected-area
-            context frames spatial patterns.
-          </p>
+          <ul class="source-list">
+            <li>
+              Monitored reefs span AIMS management sectors across the Great Barrier Reef; selecting
+              a sector on the map or in the controls links spatial context with the trend, benthic,
+              and indicator charts.
+            </li>
+            <li>
+              Mean live and dead coral cover change over the 1993–2023 record, with patterns that
+              differ by sector and by the period selected above the charts.
+            </li>
+            <li>
+              Benthic indicators describe complementary aspects of reef structure. The correlation
+              heatmap highlights associations among measures—for example, live coral and hard
+              coral cover tend to move together, while algae cover is generally lower where live
+              coral is higher.
+            </li>
+            <li>
+              Marine protected-area boundaries help situate monitored reefs geographically, but
+              protected status provides context only and does not, on its own, explain the
+              condition patterns shown in the charts.
+            </li>
+          </ul>
         </div>
 
         <div class="summary-block">

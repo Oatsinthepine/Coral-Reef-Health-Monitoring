@@ -151,6 +151,7 @@ export function init(containerSelector, data, state, dispatch) {
   // Wipe any previous content (e.g. placeholder paragraph or earlier renders).
   containerEl.innerHTML = "";
   containerEl.classList.add("chart-container--has-chart", "reef-map-container");
+  containerEl.setAttribute("aria-busy", "false");
 
   chart.containerEl = containerEl;
   chart.dispatch = dispatch;
