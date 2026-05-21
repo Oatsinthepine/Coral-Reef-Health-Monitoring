@@ -2,7 +2,7 @@ import * as d3 from "d3";
 import { filterMasterRows, sectorLabel } from "../utils.js";
 
 const MARGIN = { top: 56, right: 28, bottom: 48, left: 56 };
-const CHART_HEIGHT = 380;
+const CHART_HEIGHT = 420;
 
 const COLORS = {
   live: "#0d6e8c",

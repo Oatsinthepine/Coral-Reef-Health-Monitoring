@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 
-const MARGIN = { top: 56, right: 108, bottom: 110, left: 128 };
-const CHART_HEIGHT = 460;
+const MARGIN = { top: 56, right: 72, bottom: 110, left: 100 };
+const CHART_HEIGHT = 520;
 
 const COLOR_SCALE = d3
   .scaleLinear()
@@ -119,7 +119,7 @@ function hideTooltip(tooltip) {
 function drawColorLegend(svg, width, height) {
   const legendWidth = 14;
   const legendHeight = 120;
-  const legendX = width - MARGIN.right + 24;
+  const legendX = width - MARGIN.right + 10;
   const legendY = MARGIN.top + 20;
 
   const legend = svg
@@ -225,7 +225,7 @@ export function update(data, state) {
   const colLabels = colAxis.map((d) => d.label);
 
   const containerWidth = chart.container.node()?.clientWidth || 600;
-  const width = Math.max(420, containerWidth);
+  const width = Math.max(560, containerWidth);
   const height = CHART_HEIGHT;
   const innerWidth = width - MARGIN.left - MARGIN.right;
   const innerHeight = height - MARGIN.top - MARGIN.bottom;

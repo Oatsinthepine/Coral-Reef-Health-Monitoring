@@ -2,8 +2,8 @@ import * as d3 from "d3";
 import { INDICATOR_DEFINITIONS } from "../state.js";
 import { filterByYearRange, sectorLabel } from "../utils.js";
 
-const MARGIN = { top: 56, right: 24, bottom: 96, left: 56 };
-const CHART_HEIGHT = 400;
+const MARGIN = { top: 68, right: 24, bottom: 96, left: 56 };
+const CHART_HEIGHT = 440;
 
 /** Stable categorical colours for GBR management sectors. */
 const SECTOR_COLORS = {
@@ -268,6 +268,13 @@ export function update(data, state) {
     .attr("y", 40)
     .text(chartSubtitle(state));
 
+  svg
+    .append("text")
+    .attr("class", "indicator-legend-note")
+    .attr("x", MARGIN.left)
+    .attr("y", 54)
+    .text("Colour indicates sector. Use the sector dropdown above to highlight one sector.");
+
   const g = svg
     .append("g")
     .attr("transform", `translate(${MARGIN.left},${MARGIN.top})`);
@@ -379,14 +386,6 @@ export function update(data, state) {
       hideTooltip(chart.tooltip);
     });
 
-  // —— Sector note + size legend ——
-  g.append("text")
-    .attr("class", "indicator-legend-note")
-    .attr("x", 0)
-    .attr("y", innerHeight + 54)
-    .text(
-      "Colour indicates sector. Use the sector dropdown above to highlight one sector."
-    );
-
+  // —— Size legend ——
   drawSizeLegend(g, innerWidth, innerHeight, radius, countStats);
 }
