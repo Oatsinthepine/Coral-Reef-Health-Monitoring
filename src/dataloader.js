@@ -5,6 +5,7 @@ const DATA_PATHS = {
   master: "/data/aims_longterm_master_with_spatial.csv",
   reefPoints: "/data/reef_points.csv",
   spatialContext: "/data/reef_spatial_context.csv",
+  correlationMatrix: "/data/correlation_matrix_long.csv",
 };
 
 /** Numeric fields on the master reef-year table. */
@@ -71,6 +72,25 @@ function normalizeSpatialContextRow(row) {
   };
 }
 
+function normalizeCorrelationMatrixRow(row) {
+  const interpretation = String(row.interpretation ?? "").trim();
+
+  return {
+    row_var: String(row.row_var ?? "").trim(),
+    col_var: String(row.col_var ?? "").trim(),
+    row_label: String(row.row_label ?? "").trim(),
+    col_label: String(row.col_label ?? "").trim(),
+    pearson_r: parseNumber(row.pearson_r),
+    spearman_r: parseNumber(row.spearman_r),
+    n_complete: parseNumber(row.n_complete),
+    row_order: parseNumber(row.row_order),
+    col_order: parseNumber(row.col_order),
+    interpretation:
+      interpretation ||
+      "Correlation indicates association, not causation.",
+  };
+}
+
 function countMissing(rows, field) {
   return rows.filter((r) => r[field] === null).length;
 }
@@ -84,22 +104,25 @@ function uniqueValues(rows, field) {
  * CAPAD GeoJSON is deferred to the map phase (large file).
  */
 export async function loadAllData() {
-  const [masterRaw, reefPointsRaw, spatialContextRaw] = await Promise.all([
-    d3.csv(DATA_PATHS.master),
-    d3.csv(DATA_PATHS.reefPoints),
-    d3.csv(DATA_PATHS.spatialContext),
-  ]);
+  const [masterRaw, reefPointsRaw, spatialContextRaw, correlationMatrixRaw] =
+    await Promise.all([
+      d3.csv(DATA_PATHS.master),
+      d3.csv(DATA_PATHS.reefPoints),
+      d3.csv(DATA_PATHS.spatialContext),
+      d3.csv(DATA_PATHS.correlationMatrix),
+    ]);
 
   const master = masterRaw.map(normalizeMasterRow);
   const reefPoints = reefPointsRaw.map(normalizeReefPointRow);
   const spatialContext = spatialContextRaw.map(normalizeSpatialContextRow);
+  const correlationMatrix = correlationMatrixRaw.map(normalizeCorrelationMatrixRow);
 
-  return { master, reefPoints, spatialContext };
+  return { master, reefPoints, spatialContext, correlationMatrix };
 }
 
 /** Print a concise summary to the console after load. */
 export function logDataSummary(data) {
-  const { master, reefPoints, spatialContext } = data;
+  const { master, reefPoints, spatialContext, correlationMatrix } = data;
 
   const years = master
     .map((r) => r.REPORT_YEAR)
@@ -124,8 +147,18 @@ export function logDataSummary(data) {
       r.algae_cover === null
   ).length;
 
-
   const mpaTrue = master.filter((r) => r.in_marine_protected_area === true).length;
+
+  const correlationVariables = new Set(
+    correlationMatrix.map((r) => r.row_var).filter(Boolean)
+  ).size;
+
+  const pearsonValues = correlationMatrix
+    .map((r) => r.pearson_r)
+    .filter((v) => v != null);
+
+  const pearsonMin = d3.min(pearsonValues);
+  const pearsonMax = d3.max(pearsonValues);
 
   console.group("[Coral DVP] Data loaded");
   console.table({
@@ -137,6 +170,10 @@ export function logDataSummary(data) {
     sectors: sectors.length,
     benthicCompleteRows: benthicComplete.length,
     mpaRecordsTrue: mpaTrue,
+    correlationMatrixRows: correlationMatrix.length,
+    correlationVariables,
+    pearsonRMin: pearsonMin,
+    pearsonRMax: pearsonMax,
   });
   console.log("Sectors:", sectors.join(", "));
   console.log("Missing benthic (any of 3 cols):", benthicMissingAny);
@@ -148,5 +185,8 @@ export function logDataSummary(data) {
     yearRange: [yearMin, yearMax],
     sectors,
     benthicCompleteRows: benthicComplete.length,
+    correlationMatrixRows: correlationMatrix.length,
+    correlationVariables,
+    pearsonRRange: [pearsonMin, pearsonMax],
   };
 }

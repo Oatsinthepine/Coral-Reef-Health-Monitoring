@@ -597,6 +597,89 @@ p:last-child {
   font-style: italic;
 }
 
+.heatmap-explanation-title {
+  margin: 0 0 var(--space-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.heatmap-explanation-stat {
+  margin: 0 0 var(--space-xs);
+  font-size: 0.88rem;
+  color: var(--color-text);
+}
+
+.heatmap-explanation-text {
+  margin: var(--space-sm) 0;
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.heatmap-explanation-caveat {
+  margin: var(--space-sm) 0 0;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--color-muted);
+}
+
+.chart-empty-message--dom {
+  padding: var(--space-md);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* —— Correlation heatmap (Graph 5) —— */
+.heatmap-chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.heatmap-chart-svg .chart-title {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--color-text);
+}
+
+.heatmap-chart-svg .chart-subtitle {
+  font-size: 11px;
+  fill: var(--color-muted);
+}
+
+.heatmap-chart-svg .axis {
+  font-size: 10px;
+  color: var(--color-muted);
+}
+
+.heatmap-chart-svg .axis path,
+.heatmap-chart-svg .axis line {
+  stroke: var(--color-border);
+}
+
+.heatmap-axis-label {
+  font-size: 9px;
+  fill: var(--color-text);
+}
+
+.heatmap-cell-label {
+  font-size: 9px;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.heatmap-color-legend-title,
+.heatmap-color-legend-tick {
+  font-size: 9px;
+  fill: var(--color-muted);
+}
+
+.heatmap-color-legend-title {
+  font-weight: 600;
+}
+
 /* —— Summary / footer —— */
 .summary-section h2 {
   margin-bottom: var(--space-lg);
