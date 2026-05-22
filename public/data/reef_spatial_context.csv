@@ -1,0 +1,297 @@
+REEF_ID,REEF_NAME,SECTOR,SHELF,LATITUDE,LONGITUDE,in_marine_protected_area,capad_name,capad_iucn,capad_type,capad_match_count
+11016S,MCSWEENEY REEF,CG,M,-11.0275,143.251,True,Great Barrier Reef,VI,Marine Park,1
+11029S,MONSOON REEF,CG,M,-11.133333,143.258333,True,Great Barrier Reef,VI,Marine Park,1
+11049S,11049S,CG,M,-11.358333,143.333333,True,Great Barrier Reef,II,Marine Park,1
+11162S,11162S,CG,M,-11.6,143.291667,True,Great Barrier Reef,II,Marine Park,2
+11167S,BIRD ISLANDS REEF (NORTH),CG,I,-11.766667,143.083333,False,,,,0
+11184C1,SIR CHARLES HARDY ISLANDS (1),CG,M,-11.908333,143.466667,True,Wuthathi,II,Indigenous Protected Area,3
+11184C2,SIR CHARLES HARDY ISLANDS (2),CG,M,-11.908333,143.466667,True,Wuthathi,II,Indigenous Protected Area,3
+11211S,PEARSON REEF,CG,M,-11.566667,143.716667,True,Great Barrier Reef,Ia,Marine Park,1
+11222S2,MIDDLE BANKS (2),CG,M,-11.763333,143.651667,True,Great Barrier Reef,II,Marine Park,3
+11222S3,MIDDLE BANKS B (3),CG,M,-11.771667,143.658333,True,Great Barrier Reef,II,Marine Park,3
+11237A,ASHMORE BANKS (1),CG,M,-11.885167,143.629333,True,Great Barrier Reef,VI,Marine Park,3
+11237B,ASHMORE BANKS (2),CG,M,-11.88,143.709833,True,Great Barrier Reef,VI,Marine Park,3
+11237C,ASHMORE BANKS (3),CG,M,-11.926667,143.688167,True,Great Barrier Reef,VI,Marine Park,3
+11243S,RAINE REEF,CG,O,-11.6,144.025,True,Great Barrier Reef,II,Marine Park,2
+12010S,KAY REEF,CG,I,-12.233333,143.283333,True,Great Barrier Reef,VI,Marine Park,2
+12016B,FORBES ISLANDS REEF,CG,M,-12.291667,143.408333,False,,,,0
+12027B,QUOIN REEF(12027),CG,M,-12.4,143.533333,True,Great Barrier Reef,VI,Marine Park,2
+12056S,MANTIS REEF,CG,O,-12.275,143.891667,True,Great Barrier Reef,II,Marine Park,1
+12061S,LAGOON REEF,CG,O,-12.391667,143.741667,True,Great Barrier Reef,VI,Marine Park,1
+12071S,12071S,CG,O,-12.483333,143.75,True,Great Barrier Reef,VI,Marine Park,1
+12098S,SECOND SMALL REEF,CG,O,-12.566667,143.775,True,Great Barrier Reef,VI,Marine Park,1
+12102S,CURD REEF,CG,I,-12.591667,143.55,True,Great Barrier Reef,VI,Marine Park,2
+12107S,LOG REEF (SOUTH),CG,O,-12.675,143.841667,True,Great Barrier Reef,VI,Marine Park,1
+13006S,OSBORNE REEF,PC,I,-13.041667,143.625,True,Great Barrier Reef,II,Marine Park,1
+13040S,13040S,PC,O,-13.266667,143.941667,True,Great Barrier Reef,II,Marine Park,1
+13041S,CELEBRATION REEF,PC,M,-13.275,143.691667,True,Great Barrier Reef,VI,Marine Park,2
+13056S,SAND BANK NO 8 REEF,PC,O,-13.358333,143.958333,True,Great Barrier Reef,II,Marine Park,2
+13060S,BLANCHARD REEF,PC,M,-13.416667,143.75,True,Great Barrier Reef,VI,Marine Park,2
+13063S,13063S,PC,M,-13.416667,143.816667,True,Great Barrier Reef,VI,Marine Park,1
+13072S,MORRIS ISLAND REEF,PC,M,-13.483333,143.733333,True,Great Barrier Reef,VI,Marine Park,2
+13076S,OGILVIE REEF,PC,M,-13.541667,143.791667,True,Great Barrier Reef,II,Marine Park,1
+13081S,FIFE REEF,PC,I,-13.658333,143.725,True,Great Barrier Reef Coast,VI,Marine Park,2
+13087S,MAGPIE REEF,PC,M,-13.775,143.833333,True,Great Barrier Reef,VI,Marine Park,1
+13093A,13093A,PC,M,-13.758333,143.991667,True,Great Barrier Reef,VI,Marine Park,1
+13107S,PELICAN ISLAND REEF(13107),PC,I,-13.916667,143.841667,True,Great Barrier Reef Coast,VI,Marine Park,2
+13108S,HEDGE REEF,PC,M,-13.908333,143.958333,True,Great Barrier Reef,II,Marine Park,1
+13118A,CREECH REEF (NORTH),PC,O,-13.625,144.108333,True,Great Barrier Reef,VI,Marine Park,2
+13121S,13121S,PC,O,-13.783333,144.266667,True,Great Barrier Reef,VI,Marine Park,2
+13124S,13124S,PC,M,-13.866667,144.091667,True,Great Barrier Reef,VI,Marine Park,1
+13127S,RODDA REEF,PC,O,-13.925,144.366667,True,Great Barrier Reef,VI,Marine Park,1
+13130S,DAVIE REEF,PC,O,-13.975,144.458333,True,Great Barrier Reef,VI,Marine Park,2
+13133S,TYDEMAN REEF,PC,O,-13.983333,144.516667,True,Great Barrier Reef,VI,Marine Park,2
+14003S,GRUB REEF(14003),PC,M,-14.008333,143.991667,True,Great Barrier Reef,II,Marine Park,2
+14016S,CORBETT REEF,PC,M,-14.0,144.108333,True,Great Barrier Reef,II,Marine Park,1
+14017S,CLACK REEF,PC,I,-14.066667,144.241667,True,Great Barrier Reef,II,Marine Park,2
+14045S,SAND BANK NO 1 REEF,PC,O,-14.191667,144.916667,True,Great Barrier Reef,II,Marine Park,2
+14054S,STAPLETON REEF,CL,M,-14.325,144.858333,True,Great Barrier Reef Coast,II,Marine Park,2
+14056S,14056S,CL,M,-14.325,144.958333,True,Great Barrier Reef,VI,Marine Park,2
+14061S,SWITZER REEF,CL,M,-14.358333,144.758333,True,Great Barrier Reef,II,Marine Park,2
+14064S,INGRAM-BEANLEY REEF,CL,M,-14.425,144.891667,True,Great Barrier Reef,VI,Marine Park,2
+14075S,14075S,CL,O,-14.283333,145.175,True,Great Barrier Reef,VI,Marine Park,1
+14085S,HILDER REEF,CL,O,-14.441667,145.408333,True,Great Barrier Reef,Ia,Marine Park,1
+14094S,HOUGHTON REEF,CL,I,-14.525,144.975,False,,,,0
+14097S,COQUET REEF(14097),CL,I,-14.541667,144.991667,True,Great Barrier Reef,IV,Marine Park,1
+14109S,FLY REEF,CL,M,-14.5,145.158333,True,Great Barrier Reef,VI,Marine Park,1
+14114S,MACGILLIVRAY REEF,CL,M,-14.65,145.491667,True,Great Barrier Reef,Ia,Marine Park,2
+14115S,NYMPH REEF,CL,M,-14.658333,145.25,True,Great Barrier Reef,II,Marine Park,2
+14116S,LIZARD ISLAND,CL,M,-14.675,145.466667,False,,,,0
+14118S,EYRIE REEF,CL,M,-14.716667,145.375,True,Great Barrier Reef,II,Marine Park,2
+14120B,TURTLE GROUP REEF (NO 2),CL,I,-14.736667,145.2,False,,,,0
+14123S,MARTIN REEF(14123),CL,I,-14.766667,145.358333,True,Great Barrier Reef,VI,Marine Park,2
+14126S,LINNET REEF,CL,I,-14.783333,145.341667,True,Great Barrier Reef,VI,Marine Park,2
+14133S,14133S,CL,M,-14.916667,145.516667,True,Great Barrier Reef,VI,Marine Park,2
+14134S,EYE REEF,CL,M,-14.891667,145.475,True,Great Barrier Reef,VI,Marine Park,2
+14135S,HELSDON REEF,CL,M,-14.95,145.491667,True,Great Barrier Reef,VI,Marine Park,2
+14137S,CARTER REEF,CL,O,-14.55,145.583333,True,Great Barrier Reef,Ia,Marine Park,1
+14138S,YONGE REEF,CL,O,-14.6,145.625,True,Great Barrier Reef,Ia,Marine Park,1
+14139S,NO NAME REEF,CL,O,-14.65,145.65,True,Great Barrier Reef,II,Marine Park,1
+14143S,NORTH DIRECTION REEF,CL,M,-14.741667,145.508333,False,,,,0
+14147A,SOUTH DIRECTION REEF (NORTH),CL,M,-14.825,145.525,False,,,,0
+14152S,NO 10 PATCHES (NO 2),CL,O,-14.933333,145.683333,True,Great Barrier Reef,II,Marine Park,1
+14154S,RIBBON NO 9 REEF,CL,O,-14.991667,145.708333,True,Great Barrier Reef,VI,Marine Park,1
+15002S,TWO ISLANDS REEF,CL,I,-15.025,145.441667,True,Great Barrier Reef,VI,Marine Park,2
+15005S,THREE ISLANDS REEF,CL,I,-15.116667,145.425,False,,,,0
+15009S,FORRESTER REEF,CL,M,-15.166667,145.5,True,Great Barrier Reef,VI,Marine Park,1
+15012S,BOULDER REEF,CL,I,-15.416667,145.425,True,Great Barrier Reef,IV,Marine Park,1
+15013S,EGRET REEF,CL,I,-15.475,145.416667,True,Great Barrier Reef,IV,Marine Park,1
+15018S,PASCO REEF,CL,M,-15.05,145.533333,True,Great Barrier Reef,VI,Marine Park,2
+15019S,LONG REEF(15019),CL,M,-15.05,145.566667,True,Great Barrier Reef,VI,Marine Park,2
+15022S,15022S,CL,M,-15.1,145.625,True,Great Barrier Reef,VI,Marine Park,1
+15023S,15023S,CL,O,-15.1,145.666667,True,Great Barrier Reef,VI,Marine Park,2
+15024S,MACKAY REEFS,CL,M,-15.15,145.575,True,Great Barrier Reef,VI,Marine Park,1
+15025S,HARRIER REEF,CL,O,-15.133333,145.691667,True,Great Barrier Reef,VI,Marine Park,2
+15027S,MARX REEF,CL,M,-15.2,145.616667,True,Great Barrier Reef,VI,Marine Park,1
+15028S2,STARTLE (EAST),CL,M,-15.208333,145.55,True,Great Barrier Reef,VI,Marine Park,2
+15030S,SWINGER REEF,CL,M,-15.241667,145.533333,True,Great Barrier Reef,VI,Marine Park,2
+15032S,RIBBON NO 6 REEF,CL,O,-15.283333,145.75,True,Great Barrier Reef,Ia,Marine Park,1
+15034S,15034S,CL,O,-15.316667,145.766667,True,Great Barrier Reef,II,Marine Park,1
+15037S,15037S,CL,O,-15.333333,145.75,True,Great Barrier Reef,II,Marine Park,1
+15047S,15047S,CL,M,-15.466667,145.683333,True,Great Barrier Reef,VI,Marine Park,1
+15050S,RIBBON NO 3 REEF,CL,O,-15.483333,145.8,True,Great Barrier Reef,VI,Marine Park,1
+15054S,ROCKY ISLAND REEF(15054),CL,M,-15.603333,145.336667,True,Great Barrier Reef Coast,VI,Marine Park,2
+15077S,15077S,CL,M,-15.558333,145.65,True,Great Barrier Reef,VI,Marine Park,2
+15080S,RIBBON NO 1 REEF,CL,O,-15.608333,145.8,True,Great Barrier Reef,VI,Marine Park,1
+15081S,ROSSER REEF,CL,M,-15.616667,145.516667,True,Great Barrier Reef,VI,Marine Park,1
+15084S,IRENE REEF,CL,M,-15.65,145.716667,True,Great Barrier Reef,VI,Marine Park,1
+15085S,LENA REEF,CL,O,-15.65,145.8,True,Great Barrier Reef,VI,Marine Park,1
+15088S,RUBY REEF,CA,O,-15.75,145.783333,True,Great Barrier Reef,VI,Marine Park,2
+15089S,ENDEAVOUR REEF,CL,M,-15.783333,145.583333,True,Eastern Kuku Yalanji,VI,Indigenous Protected Area,2
+15090S,ANDERSEN REEF,CA,O,-15.791667,145.8,True,Great Barrier Reef,VI,Marine Park,2
+15092S,RACHEL CARSON REEF,CA,O,-15.825,145.816667,True,Great Barrier Reef,VI,Marine Park,2
+15093S,PICKERSGILL REEF,CA,M,-15.875,145.583333,True,Eastern Kuku Yalanji,VI,Indigenous Protected Area,3
+15094S1,ESCAPE (1),CA,O,-15.883333,145.791667,True,Great Barrier Reef,VI,Marine Park,2
+15095S,EVENING REEF,CA,M,-15.908333,145.658333,True,Great Barrier Reef,VI,Marine Park,2
+15096S,AGINCOURT REEFS (NO 4),CA,O,-15.95,145.816667,True,Eastern Kuku Yalanji,VI,Indigenous Protected Area,2
+15098S,MORNING REEF,CA,M,-15.975,145.666667,True,Great Barrier Reef,VI,Marine Park,2
+15099A,AGINCOURT REEFS (NO 3),CA,O,-15.991667,145.825,True,Eastern Kuku Yalanji,VI,Indigenous Protected Area,2
+15099C,AGINCOURT REEFS (NO 1),CA,O,-16.05,145.858333,True,Eastern Kuku Yalanji,VI,Indigenous Protected Area,2
+16013A,16013A,CA,M,-16.013333,145.791667,True,Eastern Kuku Yalanji,VI,Indigenous Protected Area,2
+16013B,16013B,CA,M,-16.013333,145.8,True,Eastern Kuku Yalanji,VI,Indigenous Protected Area,2
+16013C,16013C,CA,M,-16.03,145.803333,True,Eastern Kuku Yalanji,VI,Indigenous Protected Area,2
+16015S,MACKAY REEF,CA,M,-16.05,145.65,True,Great Barrier Reef,VI,Marine Park,3
+16017S,16017S,CA,M,-16.083333,145.725,True,Great Barrier Reef,VI,Marine Park,2
+16019S,ST CRISPIN REEF,CA,O,-16.108333,145.833333,True,Great Barrier Reef,VI,Marine Park,2
+16020A,UNDINE REEF (WEST),CA,M,-16.125,145.666667,True,Great Barrier Reef,VI,Marine Park,3
+16023S,RUDDER REEF,CA,M,-16.2,145.7,True,Great Barrier Reef,VI,Marine Park,2
+16024S,CHINAMAN REEF(16024),CA,M,-16.208333,145.8,True,Great Barrier Reef,VI,Marine Park,2
+16025S2,OPAL (2),CA,O,-16.216667,145.891667,True,Eastern Kuku Yalanji,VI,Indigenous Protected Area,2
+16026S2,TONGUE (2),CA,M,-16.316667,145.816667,True,Great Barrier Reef,VI,Marine Park,2
+16028S,LOW ISLANDS REEF,CA,I,-16.383333,145.566667,True,Eastern Kuku Yalanji,VI,Indigenous Protected Area,3
+16030S,NORMAN REEF,CA,O,-16.433333,146.0,True,Eastern Kuku Yalanji,VI,Indigenous Protected Area,2
+16032S,SAXON REEF,CA,M,-16.466667,145.983333,True,Eastern Kuku Yalanji,VI,Indigenous Protected Area,2
+16040S,PIXIE REEF,CA,M,-16.55,145.858333,True,Great Barrier Reef,VI,Marine Park,1
+16043A,OYSTER REEF,CA,M,-16.633333,145.933333,True,Great Barrier Reef,IV,Marine Park,2
+16044B,VLASOFF REEF,CA,M,-16.65,146.0,True,Great Barrier Reef,IV,Marine Park,2
+16046S,UPOLU REEF,CA,M,-16.675,145.933333,True,Great Barrier Reef Coast,II,Marine Park,2
+16049S,GREEN ISLAND REEF,CA,I,-16.758333,145.98,True,Great Barrier Reef,Ia,Marine Park,2
+16054S,FITZROY ISLAND REEF,CA,I,-16.925,145.983333,True,Great Barrier Reef,IV,Marine Park,2
+16057S,HASTINGS REEF,CA,M,-16.516667,146.016667,True,Great Barrier Reef,II,Marine Park,1
+16058S,HOPE REEF(16058),CA,O,-16.53,146.125,True,Great Barrier Reef,VI,Marine Park,1
+16060S,MICHAELMAS REEF,CA,M,-16.583333,146.016667,True,Great Barrier Reef,II,Marine Park,2
+16063S,EUSTON REEF,CA,O,-16.691667,146.25,True,Great Barrier Reef,Ia,Marine Park,1
+16064S,ARLINGTON REEF,CA,M,-16.716667,146.066667,True,Great Barrier Reef,VI,Marine Park,1
+16065S,FLYNN REEF,CA,O,-16.733333,146.275,True,Great Barrier Reef,IV,Marine Park,1
+16067S,MILLN REEF,IN,M,-16.791667,146.275,True,Great Barrier Reef,II,Marine Park,1
+16068S,THETFORD REEF,CA,M,-16.808333,146.191667,True,Great Barrier Reef,IV,Marine Park,1
+16071S,MOORE REEF,IN,M,-16.866667,146.233333,True,Great Barrier Reef,II,Marine Park,1
+17004S,SCOTT REEF,IN,M,-17.075,146.183333,True,Great Barrier Reef,II,Marine Park,1
+17008S,NOGGIN REEF,IN,O,-17.133333,146.466667,True,Great Barrier Reef,VI,Marine Park,1
+17010S,FLORA REEF,IN,M,-17.183333,146.291667,True,Great Barrier Reef,IV,Marine Park,1
+17011S,COATES REEF,IN,M,-17.2,146.366667,True,Great Barrier Reef,VI,Marine Park,1
+17012A,NORMANBY-MABEL REEF,IN,I,-17.208333,146.083333,True,Great Barrier Reef,IV,Marine Park,2
+17014S,HEDLEY REEF,IN,O,-17.233333,146.483333,True,Great Barrier Reef,II,Marine Park,1
+17016S,MCCULLOCH,IN,M,-17.283333,146.45,True,Great Barrier Reef,VI,Marine Park,1
+17024S,PEART REEF,IN,M,-17.483333,146.391667,True,Great Barrier Reef,VI,Marine Park,1
+17032S,WARDLE REEF,IN,O,-17.45,146.541667,True,Great Barrier Reef,VI,Marine Park,1
+17034S,FEATHER REEF,IN,M,-17.533333,146.383333,True,Great Barrier Reef,II,Marine Park,1
+17043A,JESSIE-KENT REEF,IN,I,-17.676667,146.175,True,Great Barrier Reef,IV,Marine Park,2
+17043C,HUTCHISON REEF,IN,I,-17.675,146.166667,True,Great Barrier Reef,IV,Marine Park,2
+17044S,ELLISON REEF,IN,M,-17.725,146.4,True,Great Barrier Reef,VI,Marine Park,1
+17051S,BEAVER REEF,IN,M,-17.85,146.483333,True,Girringun,VI,Indigenous Protected Area,3
+17057S,GILBEY REEF,IN,O,-17.583333,146.583333,True,Great Barrier Reef,VI,Marine Park,1
+17059A,POTTER REEF (NO 1),IN,O,-17.7,146.55,True,Great Barrier Reef,VI,Marine Park,1
+17063A,FARQUHARSON REEF (NO 1),IN,M,-17.783333,146.516667,True,Great Barrier Reef,VI,Marine Park,1
+17064S,TAYLOR REEF,IN,M,-17.833333,146.55,True,Girringun,VI,Indigenous Protected Area,3
+17068S,MOSS REEF,IN,O,-17.95,146.8,True,Girringun,VI,Indigenous Protected Area,2
+18023S,18023S,TO,O,-18.141667,146.975,True,Girringun,VI,Indigenous Protected Area,2
+18025S,18025S,TO,M,-18.266667,146.908333,True,Girringun,VI,Indigenous Protected Area,2
+18026S,18026S,TO,M,-18.333333,146.741667,True,Girringun,VI,Indigenous Protected Area,3
+18029S,BRAMBLE REEF,TO,M,-18.416667,146.708333,True,Great Barrier Reef,VI,Marine Park,1
+18030S,KELSO REEF,TO,M,-18.441667,146.991667,True,Great Barrier Reef,II,Marine Park,2
+18031S,LITTLE KELSO REEF,TO,M,-18.475,147.0,True,Great Barrier Reef,II,Marine Park,2
+18032S,RIB REEF,TO,M,-18.483333,146.883333,True,Great Barrier Reef,VI,Marine Park,1
+18034S,MYRMIDON REEF,TO,O,-18.266667,147.391667,True,Great Barrier Reef,II,Marine Park,1
+18037S,NEEDLE REEF,TO,O,-18.358333,147.208333,True,Great Barrier Reef,IV,Marine Park,1
+18039S,DIP REEF,TO,O,-18.416667,147.458333,True,Great Barrier Reef,II,Marine Park,1
+18041S,FARADAY REEF,TO,O,-18.425,147.358333,True,Great Barrier Reef,II,Marine Park,1
+18042S,ROXBURGH REEF,TO,M,-18.433333,147.066667,True,Great Barrier Reef,VI,Marine Park,1
+18043S,FORE AND AFT REEF,TO,M,-18.5,147.033333,True,Great Barrier Reef,VI,Marine Park,2
+18046S,COIL REEF,TO,O,-18.441667,147.516667,True,Great Barrier Reef,II,Marine Park,1
+18053S,FANTOME (EUMILLI) ISLAND REEF,TO,I,-18.675,146.516667,False,,,,0
+18065S,HAVANNAH REEF,TO,I,-18.85,146.541667,True,Great Barrier Reef,VI,Marine Park,1
+18073S,HOPKINSON REEF,TO,M,-18.558333,147.191667,True,Great Barrier Reef,VI,Marine Park,1
+18074S,YANKEE REEF,TO,M,-18.566667,147.491667,True,Great Barrier Reef,II,Marine Park,1
+18075S,JOHN BREWER REEF,TO,M,-18.633333,147.058333,True,Great Barrier Reef,IV,Marine Park,1
+18076S,HELIX REEF,TO,M,-18.633333,147.3,True,Great Barrier Reef,II,Marine Park,1
+18077S,GRUB REEF(18077),TO,M,-18.633333,147.425,True,Great Barrier Reef,VI,Marine Park,1
+18078S,LODESTONE REEF,TO,M,-18.7,147.1,True,Great Barrier Reef,VI,Marine Park,1
+18079S,KEEPER REEF,TO,M,-18.75,147.266667,True,Great Barrier Reef,VI,Marine Park,1
+18081S,KNIFE REEF,TO,O,-18.583333,147.558333,True,Great Barrier Reef,II,Marine Park,1
+18083S,FORK REEF,TO,O,-18.616667,147.558333,True,Great Barrier Reef,II,Marine Park,1
+18086S,CHICKEN REEF,TO,O,-18.658333,147.708333,True,Great Barrier Reef,VI,Marine Park,1
+18088S,CENTIPEDE REEF,TO,M,-18.725,147.541667,True,Great Barrier Reef,VI,Marine Park,1
+18091S,LYNCHS REEF,TO,M,-18.775,147.708333,True,Great Barrier Reef,II,Marine Park,1
+18095S,WHEELER REEF,TO,M,-18.808333,147.525,True,Great Barrier Reef,II,Marine Park,2
+18096S,DAVIES REEF,TO,M,-18.825,147.641667,True,Great Barrier Reef,IV,Marine Park,1
+18099S,SAVILLE-KENT REEF,TO,M,-18.858333,147.891667,True,Great Barrier Reef,II,Marine Park,1
+18106S,(LITTLE) BROADHURST REEF,TO,M,-18.966667,147.7,True,Great Barrier Reef,VI,Marine Park,1
+18112S,VIPER REEF,CU,O,-18.866667,148.141667,True,Great Barrier Reef,VI,Marine Park,1
+18118S,SHRIMP REEF,CU,M,-18.95,148.083333,True,Great Barrier Reef,VI,Marine Park,1
+18120S,JAGUAR REEF,CU,O,-18.983333,148.425,True,Great Barrier Reef,II,Marine Park,1
+19019S,BOWDEN REEF,CU,M,-19.033333,147.933333,True,Great Barrier Reef,VI,Marine Park,1
+19028S,SHELL REEF,CU,M,-19.066667,148.183333,True,Great Barrier Reef,VI,Marine Park,1
+19044S,FAITH REEF,CU,M,-19.283333,148.35,True,Great Barrier Reef,VI,Marine Park,1
+19045S,STANLEY REEF,CU,M,-19.3,148.083333,True,Great Barrier Reef,II,Marine Park,1
+19046S,HOPE REEF(19046),CU,M,-19.325,148.433333,True,Great Barrier Reef,VI,Marine Park,1
+19047S,CHARITY REEF,CU,M,-19.366667,148.333333,True,Great Barrier Reef,VI,Marine Park,1
+19061S,JACQUELINE REEF,CU,O,-19.216667,148.9,True,Great Barrier Reef,Ia,Marine Park,1
+19063A,KANGAROO REEF (EAST),CU,M,-19.25,148.625,True,Great Barrier Reef,II,Marine Park,1
+19063B,KANGAROO REEF (WEST),CU,M,-19.258333,148.55,True,Great Barrier Reef,II,Marine Park,1
+19076S,SHOWERS REEF,CU,M,-19.491667,148.908333,True,Great Barrier Reef,VI,Marine Park,1
+19082S,ELIZABETH REEF,CU,M,-19.333333,149.05,True,Great Barrier Reef,VI,Marine Park,1
+19098S,WANSFELL REEF,CU,M,-19.508333,149.116667,True,Great Barrier Reef,VI,Marine Park,1
+19103S,HOLBOURNE ISLAND REEF,CU,I,-19.716667,148.358333,True,Great Barrier Reef,VI,Marine Park,2
+19120S,OUTLIER REEF,WH,M,-19.55,149.358333,True,Great Barrier Reef,VI,Marine Park,1
+19131S,19131S,WH,M,-19.766667,149.366667,True,Great Barrier Reef,VI,Marine Park,1
+19135S,HARDY REEF,WH,M,-19.758333,149.225,True,Great Barrier Reef,II,Marine Park,1
+19137S,BAIT REEF,WH,M,-19.808333,149.075,True,Great Barrier Reef,II,Marine Park,1
+19138S,19138S,WH,M,-19.808333,149.425,True,Great Barrier Reef,VI,Marine Park,1
+19147S,PLASTER REEF,WH,M,-19.633333,149.658333,True,Great Barrier Reef,II,Marine Park,1
+19159S,SLATE REEF,WH,O,-19.666667,149.925,True,Great Barrier Reef,II,Marine Park,1
+19177S,CRAB REEF,WH,M,-19.725,149.708333,True,Great Barrier Reef,VI,Marine Park,1
+19195S,NAPIER REEF,WH,M,-19.841667,149.891667,True,Great Barrier Reef,II,Marine Park,1
+19207S,HYDE REEF,WH,O,-19.758333,150.091667,True,Great Barrier Reef,VI,Marine Park,1
+19209S,REBE REEF,WH,O,-19.808333,150.15,True,Great Barrier Reef,VI,Marine Park,1
+19219S,CONDER REEF,PO,M,-19.916667,150.2,True,Great Barrier Reef,VI,Marine Park,1
+20014S,HAYMAN ISLAND REEF,WH,I,-20.066667,148.891667,True,Great Barrier Reef,IV,Marine Park,2
+20019S,LANGFORD-BIRD REEF,WH,I,-20.091667,148.875,True,Great Barrier Reef,IV,Marine Park,2
+20067A,BORDER ISLAND REEF (NO 1),WH,I,-20.175,149.025,True,Great Barrier Reef Coast,II,Marine Park,2
+20104S,20104S,WH,M,-20.033333,149.683333,True,Great Barrier Reef,VI,Marine Park,1
+20112S,EDGELL REEFS (NO 5),PO,M,-20.141667,149.941667,True,Great Barrier Reef,II,Marine Park,1
+20113S,BEN REEF,PO,O,-20.008333,150.325,True,Great Barrier Reef,VI,Marine Park,1
+20144S,CANNAN REEF,PO,M,-20.483333,150.141667,True,Great Barrier Reef,VI,Marine Park,1
+20145S,PACKER REEFS,PO,M,-20.483333,150.208333,True,Great Barrier Reef,VI,Marine Park,1
+20287S,CREDLIN REEFS (EAST),PO,M,-20.541667,149.95,True,Great Barrier Reef,VI,Marine Park,1
+20297S,CREAL REEF,PO,M,-20.533333,150.383333,True,Great Barrier Reef,VI,Marine Park,1
+20299D,BRIGGS REEF (NO 4),PO,M,-20.683833,150.4515,True,Great Barrier Reef,VI,Marine Park,1
+20309S,TERN REEF(20309),PO,M,-20.908333,150.033333,False,,,,0
+20348S,20348S,PO,M,-20.891667,150.958333,True,Great Barrier Reef,II,Marine Park,1
+20351A,POMPEY REEF (NO 1),PO,M,-20.941667,150.533333,True,Great Barrier Reef,II,Marine Park,1
+20351B,POMPEY REEF (NO 2),PO,M,-20.991667,150.525,True,Great Barrier Reef,II,Marine Park,1
+20353S,20353S,PO,M,-20.966667,150.916667,True,Great Barrier Reef,II,Marine Park,1
+20354S,20354S,PO,M,-20.975,150.95,True,Great Barrier Reef,II,Marine Park,1
+21025S,PENRITH REEF,PO,M,-21.016667,149.9,False,,,,0
+21031S,PRUDHOE ISLAND REEF,PO,I,-21.333333,149.691667,True,Great Barrier Reef,VI,Marine Park,2
+21039S,KNIGHT REEF,PO,I,-21.45,149.708333,True,Great Barrier Reef Coast,VI,Marine Park,2
+21060S,21060S,PO,M,-21.016667,150.608333,True,Great Barrier Reef,VI,Marine Park,1
+21062S,21062S,PO,M,-21.033333,150.866667,True,Great Barrier Reef,VI,Marine Park,1
+21064S,21064S,PO,M,-21.058333,150.775,True,Great Barrier Reef,VI,Marine Park,1
+21074S,21074S,PO,M,-21.158333,150.85,True,Great Barrier Reef,VI,Marine Park,1
+21104S,21104S,PO,M,-21.1,151.241667,True,Great Barrier Reef,VI,Marine Park,1
+21137S,21137S,PO,M,-21.4,151.416667,True,Great Barrier Reef,II,Marine Park,2
+21139S,21139S,PO,M,-21.475,151.475,True,Great Barrier Reef,II,Marine Park,1
+21140S,21140S,PO,M,-21.483333,151.283333,True,Great Barrier Reef,II,Marine Park,1
+21179S,21179S,SW,M,-21.35,151.725,True,Great Barrier Reef,II,Marine Park,1
+21186S,21186S,SW,M,-21.416667,151.791667,True,Great Barrier Reef,VI,Marine Park,1
+21187S,21187S,PO,M,-21.416667,151.641667,True,Great Barrier Reef,VI,Marine Park,1
+21217S,21217S,SW,M,-21.125,152.466667,True,Great Barrier Reef,II,Marine Park,2
+21219S,21219S,SW,M,-21.141667,152.183333,True,Great Barrier Reef,Ia,Marine Park,2
+21235S,LAVERS REEF,SW,M,-21.216667,152.016667,True,Great Barrier Reef,VI,Marine Park,2
+21241S,CENTENERY REEF,SW,M,-21.283333,152.333333,True,Great Barrier Reef,VI,Marine Park,2
+21245S,21245S,SW,M,-21.308333,152.441667,True,Great Barrier Reef,VI,Marine Park,2
+21278S,21278S,SW,M,-21.108333,152.55,True,Great Barrier Reef,II,Marine Park,1
+21286S,21286S,SW,M,-21.175,152.516667,True,Great Barrier Reef,VI,Marine Park,2
+21296S,21296S,SW,O,-21.341667,152.55,True,Great Barrier Reef,II,Marine Park,1
+21302S,21302S,SW,O,-21.433333,152.575,True,Great Barrier Reef,VI,Marine Park,1
+21305S,EAST CAY REEF,SW,O,-21.491667,152.558333,True,Great Barrier Reef,VI,Marine Park,2
+21308S,TEMPLE ISLAND REEF,PO,I,-21.608333,149.483333,True,Cape Palmerston - Rocky Dam,VI,Fish Habitat Area (A),3
+21334S,CURLEW REEF,PO,I,-21.6,149.783333,True,Great Barrier Reef,VI,Marine Park,2
+21340S,TEMPLE SHOAL,PO,I,-21.6,149.5,True,Great Barrier Reef Coast,VI,Marine Park,2
+21386S,PINE PEAK REEF,PO,I,-21.516667,150.258333,True,Great Barrier Reef,II,Marine Park,2
+21450S,21450S,SW,M,-21.633333,151.625,True,Great Barrier Reef,II,Marine Park,1
+21467S,21467S,SW,M,-21.883333,151.925,True,Great Barrier Reef,VI,Marine Park,1
+21497S,THOMAS REEF(21497),SW,M,-21.666667,152.341667,True,Great Barrier Reef,VI,Marine Park,2
+21501S,RECREATION REEF,SW,M,-21.683333,152.441667,True,Great Barrier Reef,II,Marine Park,2
+21511S,FRIGATE REEF,SW,M,-21.733333,152.425,True,Great Barrier Reef,II,Marine Park,2
+21529S,21529S,SW,M,-21.866667,152.175,True,Great Barrier Reef,Ia,Marine Park,1
+21550S,21550S,SW,M,-21.958333,152.316667,True,Great Barrier Reef,VI,Marine Park,1
+21556S,GANNETT CAY REEF,SW,M,-21.983333,152.475,True,Great Barrier Reef Coast,Ia,Marine Park,2
+21557S1,21557S1,SW,M,-21.983333,152.458333,True,Great Barrier Reef,II,Marine Park,2
+21558S,21558S,SW,O,-21.558333,152.541667,True,Great Barrier Reef,II,Marine Park,1
+21562S,TURNER REEF,SW,O,-21.725,152.558333,True,Great Barrier Reef,VI,Marine Park,2
+21572S,SMALL LAGOON REEF,SW,M,-21.875,152.508333,True,Great Barrier Reef,VI,Marine Park,1
+21577S,CENTRAL REEF,SW,M,-21.925,152.516667,True,Great Barrier Reef,VI,Marine Park,1
+21583S,21583S,SW,O,-21.941667,152.655,True,Great Barrier Reef,II,Marine Park,2
+21584S,JENKINS REEF,SW,M,-21.958333,152.6,True,Great Barrier Reef,II,Marine Park,2
+21588S,WADE REEF,SW,M,-21.983333,152.65,True,Great Barrier Reef,II,Marine Park,2
+21591S,21591S,PO,M,-21.025833,150.373,True,Great Barrier Reef,VI,Marine Park,1
+22084S,22084S,SW,M,-22.0,152.458333,True,Great Barrier Reef,II,Marine Park,2
+22088S,SNAKE (22088),SW,M,-22.025,152.15,True,Great Barrier Reef,VI,Marine Park,1
+22102S,CHINAMAN REEF(22102),SW,M,-22.008333,152.658333,True,Great Barrier Reef,VI,Marine Park,2
+22104S,HORSESHOE,SW,M,-22.033333,152.591667,True,Great Barrier Reef,VI,Marine Park,1
+22112S,22112S,SW,M,-22.083333,152.591667,True,Great Barrier Reef,VI,Marine Park,1
+22118S,22118S,SW,M,-22.125,152.625,True,Great Barrier Reef,VI,Marine Park,1
+22144S,22144S,SW,M,-22.333333,152.666667,True,Great Barrier Reef,VI,Marine Park,2
+23045A,NORTH REEF (NORTH),CB,O,-23.183333,151.908333,True,Great Barrier Reef Coast,II,Marine Park,2
+23048S,BROOMFIELD REEF,CB,O,-23.275,151.941667,True,Great Barrier Reef Coast,IV,Marine Park,2
+23051S,WRECK ISLAND REEF,CB,O,-23.333333,151.966667,True,Great Barrier Reef Coast,Ia,Marine Park,2
+23055S,ONE TREE REEF,CB,O,-23.5,152.066667,True,Great Barrier Reef Coast,Ia,Marine Park,2
+23068S,ERSKINE REEF,CB,O,-23.508333,151.775,True,Great Barrier Reef Coast,II,Marine Park,2
+23069S,MAST HEAD REEF,CB,O,-23.541667,151.733333,True,Great Barrier Reef Coast,IV,Marine Park,2
+23077S,FITZROY REEF,CB,O,-23.625,152.158333,True,Great Barrier Reef,VI,Marine Park,2
+23079S,BOULT REEF,CB,O,-23.758333,152.266667,True,Great Barrier Reef Coast,VI,Marine Park,2
+23080S,HOSKYN ISLANDS REEF,CB,O,-23.808333,152.291667,True,Great Barrier Reef,II,Marine Park,2
+23081S,FAIRFAX ISLANDS REEF,CB,O,-23.858333,152.366667,True,Great Barrier Reef,II,Marine Park,2
+23082S,LADY MUSGRAVE REEF,CB,O,-23.908333,152.408333,True,Great Barrier Reef Coast,VI,Marine Park,2
