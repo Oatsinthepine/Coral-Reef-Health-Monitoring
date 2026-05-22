@@ -58,16 +58,6 @@ Icon?
 *.swp
 *.swo
 
-# =========================
-# Python temporary files
-# =========================
-__pycache__/
-*.py[cod]
-*.pyo
-.ipynb_checkpoints/
-.venv/
-venv/
-env/
 
 # =========================
 # Temporary / scratch files
@@ -78,11 +68,6 @@ scratch/
 drafts/
 *.bak
 *.tmp
-
-# =========================
-# data
-# =========================
-
 
 # =========================
 # Optional raw data archives

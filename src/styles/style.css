@@ -939,3 +939,24 @@ p:last-child {
     flex: 1 1 100%;
   }
 }
+
+.source-list a,
+.limitations-list a {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(31, 120, 152, 0.35);
+}
+
+.source-list a:hover,
+.limitations-list a:hover {
+  color: #145f78;
+  border-bottom-color: currentColor;
+}
+
+.source-list code {
+  padding: 0.1rem 0.3rem;
+  font-size: 0.85em;
+  background: var(--color-accent-soft);
+  border-radius: 4px;
+}
