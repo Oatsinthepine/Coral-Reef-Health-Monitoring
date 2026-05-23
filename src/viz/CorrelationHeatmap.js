@@ -1,14 +1,15 @@
+/*
+This js file if for plotting graph 5 — Correlation heatmap
+uses a pre-computed correlation matrix from dataloader, this plot does not respond to sector/period filters; selection state is module-local.
+*/
+
 import * as d3 from "d3";
 
 const MARGIN = { top: 56, right: 170, bottom: 120, left: 160 };
 const CHART_HEIGHT = 500;
 const GRID_MAX = 440;
 
-/**
- * Diverging Purple-Orange palette: negative correlations → purple,
- * near-zero → light neutral, positive correlations → orange.
- * `1 - t` flips the default PuOr direction so purple stays on the negative end.
- */
+// use diverging Purple-Orange palette: negative correlations is purple, positive correlations is orange.
 const COLOR_SCALE = d3
   .scaleDiverging()
   .domain([-1, 0, 1])
@@ -19,11 +20,10 @@ const chart = {
   container: null,
   tooltip: null,
   explanationPanel: null,
-  /** @type {{ row_var: string, col_var: string } | null} */
   selectedCell: null,
 };
 
-/** Unique axis variables sorted by order field. */
+// unique axis variables sorted by order field
 function orderedAxisVars(matrix, axis) {
   const isRow = axis === "row";
   const varKey = isRow ? "row_var" : "col_var";
@@ -57,7 +57,7 @@ function labelFill(pearsonR) {
   return Math.abs(pearsonR ?? 0) > 0.6 ? "#ffffff" : "#1a2b3c";
 }
 
-/** Remove repeated causation caveat from interpretation copy. */
+// remove repeated causation caveat from interpretation copy
 function cleanInterpretation(text) {
   return String(text ?? "")
     .replace(/Correlation indicates association, not causation\.?/gi, "")
@@ -84,6 +84,7 @@ function setSelectedExplanation(panel, cell) {
     `<p class="heatmap-explanation-text">${interpretation}</p>`;
 }
 
+// also keep boundary-safe tooltip positioning
 function showTooltip(tooltip, containerNode, event, cell) {
   const [px, py] = d3.pointer(event, containerNode);
   const padding = 12;
@@ -122,6 +123,7 @@ function hideTooltip(tooltip) {
   tooltip.style("opacity", 0);
 }
 
+// vertical colour legend anchored beside the capped grid (not container edge)
 function drawColorLegend(svg, gridLeft, gridSize) {
   const legendWidth = 14;
   const legendHeight = Math.min(160, gridSize - 40);
@@ -178,6 +180,13 @@ function drawColorLegend(svg, gridLeft, gridSize) {
     .text((d) => d.label);
 }
 
+/**
+create tooltip and initialise the explanation panel placeholder.
+@param {string} containerSelector
+@param {object} data - appData
+@param {object} state - shared appState (unused for this chart)
+@param {function} dispatch - unused; kept for consistent chart API
+*/
 export function init(containerSelector, data, state, dispatch) {
   chart.container = d3.select(containerSelector);
   chart.container.selectAll("*").remove();
@@ -193,6 +202,7 @@ export function init(containerSelector, data, state, dispatch) {
   setInitialExplanation(chart.explanationPanel);
 }
 
+// Render heatmap from precomputed matrix; preserves selected cell across redraws.
 export function update(data, state) {
   if (!chart.container) return;
 
@@ -236,8 +246,7 @@ export function update(data, state) {
   const innerWidth = width - MARGIN.left - MARGIN.right;
   const innerHeight = height - MARGIN.top - MARGIN.bottom;
 
-  // Cap the heatmap grid so the 6×6 matrix stays compact and readable
-  // even when the section card is very wide.
+  // Cap the heatmap grid so the 6×6 matrix stays compact and readable even when the section card is very wide.
   const gridSize = Math.max(280, Math.min(GRID_MAX, innerWidth, innerHeight));
 
   const svg = chart.container
@@ -273,7 +282,7 @@ export function update(data, state) {
   const x = d3.scaleBand().domain(colLabels).range([0, gridSize]).padding(0.06);
   const y = d3.scaleBand().domain(rowLabels).range([0, gridSize]).padding(0.06);
 
-  // —— Cells ——
+  // Fill = pearson_r on diverging PuOr scale; click updates explanation panel.
   const cells = g
     .selectAll(".heatmap-cell")
     .data(matrix)
@@ -354,7 +363,6 @@ export function update(data, state) {
         );
     });
 
-  // —— Axes ——
   g.append("g")
     .attr("class", "axis axis--x")
     .attr("transform", `translate(0,${gridSize})`)

@@ -1,8 +1,13 @@
+/*
+ This is the js code using leatfet to plot the graph 1 — Interactive reef map 
+ which shows monitored reef locations coloured by sector with optional CAPAD overlay.
+ */
+
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { sectorLabel } from "../utils.js";
 
-/** Stable sector colours (matches Graph 4). */
+// stable sector colours declared here
 const SECTOR_COLORS = {
   CA: "#4e79a7",
   CB: "#f28e2b",
@@ -17,7 +22,7 @@ const SECTOR_COLORS = {
   WH: "#86bcb6",
 };
 
-/** Module-local state — Leaflet map is created once and reused. */
+// module-local state: leaflet map is created once and reused
 const chart = {
   containerEl: null,
   mapEl: null,
@@ -44,7 +49,7 @@ function fmt(n) {
   return n == null ? "—" : Number(n).toFixed(3);
 }
 
-/** Join reef points with spatial context by REEF_ID. */
+// join reef points with spatial context by REEF_ID
 function joinReefData(reefPoints, spatialContext) {
   const ctxMap = new Map((spatialContext ?? []).map((r) => [r.REEF_ID, r]));
 
@@ -80,7 +85,7 @@ function popupHtml(reef) {
   );
 }
 
-/** Style for a marker based on current selected sector. */
+// visual encoding: colour = sector; filled = protected area, hollow = outside MPA
 function markerStyle(reef, state) {
   const selected =
     state.selectedSector !== "All" && reef.SECTOR === state.selectedSector;
@@ -115,7 +120,7 @@ function applyMarkerStyles(state) {
   }
 }
 
-/** Build the reset button and append to the chart container. */
+// build the reset button and append to the chart container
 function addResetButton(state) {
   const btn = document.createElement("button");
   btn.type = "button";
@@ -141,6 +146,13 @@ function addMapNote() {
   chart.containerEl.appendChild(note);
 }
 
+/**
+Here I create the leaflet map, layers, and markers once in the init function.
+@param {string} containerSelector - DOM selector for #reef-map
+@param {object} data - appData (reefPoints, spatialContext, capadGbr)
+@param {object} state - shared appState (selectedSector)
+@param {function} dispatch - main.js dispatch for sectorChange
+*/
 export function init(containerSelector, data, state, dispatch) {
   const containerEl = document.querySelector(containerSelector);
   if (!containerEl) {
@@ -148,7 +160,7 @@ export function init(containerSelector, data, state, dispatch) {
     return;
   }
 
-  // Wipe any previous content (e.g. placeholder paragraph or earlier renders).
+  // wipe any previous content (e.g. placeholder paragraph or earlier renders).
   containerEl.innerHTML = "";
   containerEl.classList.add("chart-container--has-chart", "reef-map-container");
   containerEl.setAttribute("aria-busy", "false");
@@ -156,10 +168,10 @@ export function init(containerSelector, data, state, dispatch) {
   chart.containerEl = containerEl;
   chart.dispatch = dispatch;
 
-  // Reset button (positioned absolutely above the map).
+  // reset button (positioned absolutely above the map)
   addResetButton(state);
 
-  // Map div fills the chart container.
+  // map div fills the chart container
   chart.mapEl = document.createElement("div");
   chart.mapEl.className = "reef-map-leaflet";
   containerEl.appendChild(chart.mapEl);
@@ -167,7 +179,7 @@ export function init(containerSelector, data, state, dispatch) {
   // Note below the map.
   addMapNote();
 
-  // —— Create the Leaflet map ——
+  // leaflet map is initialised once, preferCanvas improves performance with ~300 markers
   chart.map = L.map(chart.mapEl, {
     zoomControl: true,
     attributionControl: true,
@@ -175,8 +187,7 @@ export function init(containerSelector, data, state, dispatch) {
     preferCanvas: true,
   });
 
-  // Lightweight base map for geographic context. If tiles cannot be loaded,
-  // the CAPAD polygons and reef markers still render on the local map canvas.
+  // base map for geographic context using openstreetmap, the CAPAD polygons and reef markers still render on the local map canvas.
   chart.baseTileLayer = L.tileLayer(
     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     {
@@ -187,7 +198,7 @@ export function init(containerSelector, data, state, dispatch) {
     }
   ).addTo(chart.map);
 
-  // CAPAD polygon layer (optional, no hover).
+  // CAPAD polygons are background-only (interactive: false) to avoid hover conflicts.
   if (data.capadGbr?.features?.length) {
     chart.capadLayer = L.geoJSON(data.capadGbr, {
       style: () => ({
@@ -201,7 +212,6 @@ export function init(containerSelector, data, state, dispatch) {
     }).addTo(chart.map);
   }
 
-  // Reef markers
   chart.markersLayer = L.layerGroup().addTo(chart.map);
   chart.markerEntries = [];
 
@@ -224,6 +234,7 @@ export function init(containerSelector, data, state, dispatch) {
       opacity: 0.98,
     });
 
+    // click sets global sector and triggers linked chart updates via dispatch
     marker.on("click", () => {
       marker.openTooltip();
       state.selectedSector = reef.SECTOR;
@@ -240,16 +251,15 @@ export function init(containerSelector, data, state, dispatch) {
     latLngs.push([reef.LATITUDE, reef.LONGITUDE]);
   }
 
-  // Fit to reef points only (per spec — not CAPAD bounds).
+  // fit to reef points only (per spec: not CAPAD bounds)
   if (latLngs.length > 0) {
     chart.map.fitBounds(latLngs, { padding: [28, 28], maxZoom: 7 });
   } else {
-    // Sensible default if no points.
+    // set default if no points
     chart.map.setView([-18.5, 147], 5);
   }
 
-  // Fix sizing if the container had 0 dimensions when the map was created
-  // (e.g. inside a flex layout that resolved size later).
+// fix sizing if the container had 0 dimensions when the map was created (e.g. inside a flex layout that resolved size later).
   requestAnimationFrame(() => {
     if (chart.map) chart.map.invalidateSize();
   });
@@ -257,6 +267,11 @@ export function init(containerSelector, data, state, dispatch) {
   chart.ready = true;
 }
 
+/**
+restyle markers when selectedSector changes — map is not recreated.
+ @param {object} data - appData (unused; kept for consistent chart API)
+ @param {object} state - shared appState
+*/
 export function update(data, state) {
   if (!chart.ready || !chart.map) return;
   applyMarkerStyles(state);

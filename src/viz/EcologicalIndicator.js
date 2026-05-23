@@ -1,3 +1,8 @@
+/*
+This js file if for plotting graph 4 — Ecological indicator bubble scatter by sector and year.
+encodings: x = year, y = mean cover, colour = sector, radius = reef-year count.
+*/
+
 import * as d3 from "d3";
 import { INDICATOR_DEFINITIONS } from "../state.js";
 import { filterByYearRange, sectorLabel } from "../utils.js";
@@ -5,7 +10,7 @@ import { filterByYearRange, sectorLabel } from "../utils.js";
 const MARGIN = { top: 68, right: 24, bottom: 96, left: 56 };
 const CHART_HEIGHT = 440;
 
-/** Stable categorical colours for GBR management sectors. */
+// set stable categorical colours for GBR management sector
 const SECTOR_COLORS = {
   CA: "#4e79a7",
   CB: "#f28e2b",
@@ -48,10 +53,7 @@ function formatPct(value) {
   return value == null ? "—" : `${d3.format(".1f")(value)}%`;
 }
 
-/**
- * Aggregate sector-year means for the selected indicator.
- * Does not filter by selectedSector — all sectors remain visible.
- */
+// aggregate sector-year means for the selected indicator, this does not filter by selectedSector — all sectors remain visible.
 function aggregateSectorYear(master, state) {
   const field = state.selectedIndicator;
   const filtered = filterByYearRange(master, state.selectedYearRange).filter(
@@ -87,7 +89,7 @@ function aggregateSectorYear(master, state) {
   return points.sort((a, b) => a.year - b.year || a.sector.localeCompare(b.sector));
 }
 
-/** Build sqrt radius scale and count summary stats for bubble encoding. */
+// sqrt scale maps count to radius, domain clamped at p95 to limit outlier bubble size
 function buildRadiusScale(points) {
   const countMin = d3.min(points, (d) => d.count);
   const countMedian = d3.median(points, (d) => d.count);
@@ -128,6 +130,7 @@ function bubbleStroke(sector, state) {
   return { width: 0.6, color: "rgba(26, 43, 60, 0.22)" };
 }
 
+// ensure boundary-safe tooltip positioning
 function showTooltip(tooltip, containerNode, event, point, state) {
   const [px, py] = d3.pointer(event, containerNode);
   const padding = 12;
@@ -165,7 +168,7 @@ function hideTooltip(tooltip) {
   tooltip.style("opacity", 0);
 }
 
-/** Compact bubble size legend (min / median / p95). */
+// compact bubble size legend (min / median / p95)
 function drawSizeLegend(g, innerWidth, innerHeight, radius, stats) {
   const { countMin, countMedian, countP95 } = stats;
   const legendWidth = 168;
@@ -221,6 +224,13 @@ function drawSizeLegend(g, innerWidth, innerHeight, radius, stats) {
     .text((d) => d.label);
 }
 
+/**
+Here I create tooltip container.
+@param {string} containerSelector
+@param {object} data - appData
+@param {object} state - shared appState
+@param {function} dispatch - unused; kept for consistent chart API
+*/
 export function init(containerSelector, data, state, dispatch) {
   chart.container = d3.select(containerSelector);
   chart.container.selectAll("*").remove();
@@ -233,6 +243,7 @@ export function init(containerSelector, data, state, dispatch) {
     .style("opacity", 0);
 }
 
+// redraw bubbles for the selected indicator and period
 export function update(data, state) {
   if (!chart.container) return;
 
@@ -292,6 +303,7 @@ export function update(data, state) {
   const countStats = buildRadiusScale(points);
   const { radius } = countStats;
 
+  // Small horizontal dodge by sector reduces overplotting at the same year.
   const sectorsInView = [...new Set(points.map((d) => d.sector))].sort();
   const sectorOffset = d3.scalePoint().domain(sectorsInView).range([-8, 8]);
 
@@ -310,7 +322,7 @@ export function update(data, state) {
     .nice()
     .range([innerHeight, 0]);
 
-  // —— Axes ——
+  // axes
   g.append("g")
     .attr("class", "axis axis--x")
     .attr("transform", `translate(0,${innerHeight})`)
@@ -340,7 +352,7 @@ export function update(data, state) {
     .attr("text-anchor", "middle")
     .text("Report year");
 
-  // —— Trend line for highlighted sector (uses dodged x) ——
+  // Trend line connects the highlighted sector's bubbles when one sector is selected.
   if (state.selectedSector !== "All") {
     const trendPoints = points
       .filter((d) => d.sector === state.selectedSector)
@@ -363,7 +375,7 @@ export function update(data, state) {
     }
   }
 
-  // —— Bubbles ——
+  // draw the bubbles
   const bubbles = g
     .selectAll(".indicator-bubble")
     .data(points)
@@ -386,6 +398,5 @@ export function update(data, state) {
       hideTooltip(chart.tooltip);
     });
 
-  // —— Size legend ——
   drawSizeLegend(g, innerWidth, innerHeight, radius, countStats);
 }

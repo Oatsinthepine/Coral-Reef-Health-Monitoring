@@ -1,3 +1,7 @@
+/*
+This js file if for plotting graph 2 — Live and dead coral cover over time
+this plot responds to selectedSector and selectedYearRange from shared state.
+*/
 import * as d3 from "d3";
 import { filterMasterRows, sectorLabel } from "../utils.js";
 
@@ -9,17 +13,14 @@ const COLORS = {
   dead: "#D46A4C",
 };
 
-/** Module state (legend focus is local, not global app state). */
+// module state (legend focus is local, not global app state)
 const chart = {
   container: null,
   tooltip: null,
   legendFocus: null, // null | "live" | "dead"
 };
 
-/**
- * Filter, group by year, and aggregate mean live/dead coral.
- * Excludes years where both means are null.
- */
+// filter, group by year, and aggregate mean live/dead coral, excludes years where both means are null
 function aggregateByYear(master, state) {
   const filtered = filterMasterRows(master, state);
   const byYear = d3.group(filtered, (d) => d.REPORT_YEAR);
@@ -60,7 +61,7 @@ function formatPct(value) {
   return value == null ? "—" : `${d3.format(".1f")(value)}%`;
 }
 
-/** Find the year row closest to the mouse x position in plot coordinates. */
+// find the year row closest to the mouse x position in plot coordinates
 function nearestYear(series, xScale, mouseX) {
   if (!series.length) return null;
   const yearAtMouse = xScale.invert(mouseX);
@@ -69,6 +70,7 @@ function nearestYear(series, xScale, mouseX) {
   );
 }
 
+// set boundary-safe tooltip: measure after render, clamp within chart container
 function showTooltip(tooltip, containerNode, event, row, state) {
   const sectorText =
     state.selectedSector === "All"
@@ -119,12 +121,19 @@ function hideTooltip(tooltip) {
   tooltip.style("opacity", 0);
 }
 
-/** Apply faded styling based on module-local legendFocus. */
+// apply faded styling based on module-local legendFocus
 function seriesOpacity(seriesKey) {
   if (!chart.legendFocus) return 1;
   return chart.legendFocus === seriesKey ? 1 : 0.2;
 }
 
+/**
+ create tooltip container (SVG is built on first and subsequent update() calls)
+ @param {string} containerSelector
+ @param {object} data - appData
+ @param {object} state - shared appState
+ @param {function} dispatch - unused; kept for consistent chart API
+ */
 export function init(containerSelector, data, state, dispatch) {
   chart.container = d3.select(containerSelector);
   chart.container.selectAll("*").remove();
@@ -137,6 +146,7 @@ export function init(containerSelector, data, state, dispatch) {
     .style("opacity", 0);
 }
 
+// clear-and-redraw SVG from filtered master data and current state
 export function update(data, state) {
   if (!chart.container) return;
 
@@ -161,7 +171,7 @@ export function update(data, state) {
       `Line chart of mean live and dead coral cover, ${sectorSubtitle(state)}`
     );
 
-  // —— Title & subtitle ——
+  // set the title and subtitle
   svg
     .append("text")
     .attr("class", "chart-title")
@@ -190,6 +200,7 @@ export function update(data, state) {
     return;
   }
 
+  // Scales: x = report year, y = mean cover (%)
   const x = d3
     .scaleLinear()
     .domain(d3.extent(series, (d) => d.year))
@@ -206,7 +217,7 @@ export function update(data, state) {
     .nice()
     .range([innerHeight, 0]);
 
-  // —— Axes ——
+  // set the axes
   g.append("g")
     .attr("class", "axis axis--x")
     .attr("transform", `translate(0,${innerHeight})`)
@@ -236,7 +247,7 @@ export function update(data, state) {
     .attr("text-anchor", "middle")
     .text("Report year");
 
-  // —— Lines ——
+  // set the lines
   const lineLive = d3
     .line()
     .defined((d) => d.mean_live_coral != null)
@@ -290,7 +301,7 @@ export function update(data, state) {
     .attr("fill", COLORS.dead)
     .attr("opacity", seriesOpacity("dead"));
 
-  // —— Hover layer ——
+  // Transparent overlay captures hover; vertical guide + enlarged points per year.
   const hoverG = g.append("g").attr("class", "trend-hover-layer");
 
   const guideLine = hoverG
@@ -342,7 +353,7 @@ export function update(data, state) {
       hideTooltip(chart.tooltip);
     });
 
-  // —— Legend ——
+  // legend click toggles module-local legendFocus (fade non-selected series)
   const legend = svg
     .append("g")
     .attr("class", "trend-legend")

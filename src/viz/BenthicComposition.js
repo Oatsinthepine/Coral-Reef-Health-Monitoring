@@ -1,3 +1,7 @@
+/*
+This is the graph 3 — Benthic cover indicators over time
+which uses d3.stack with offset none.
+*/
 import * as d3 from "d3";
 import { filterMasterRows, sectorLabel } from "../utils.js";
 
@@ -10,7 +14,7 @@ const LAYERS = [
   { key: "algae_cover", label: "Algae", color: "#8AB17D" },
 ];
 
-/** Module state (legend focus is local; also mirrored to state.selectedBenthicLayer). */
+// module state (legend focus is local, also mirrored to state.selectedBenthicLayer)
 const chart = {
   container: null,
   tooltip: null,
@@ -25,9 +29,7 @@ function hasBenthicValue(row) {
   );
 }
 
-/**
- * Filter, keep rows with benthic data, group by year, aggregate means per layer.
- */
+// filter, keep rows with benthic data, group by year, aggregate means per layer
 function aggregateBenthicByYear(master, state) {
   const filtered = filterMasterRows(master, state).filter(hasBenthicValue);
   const byYear = d3.group(filtered, (d) => d.REPORT_YEAR);
@@ -120,6 +122,7 @@ function layerOpacity(layerKey) {
   return chart.legendFocus === layerKey ? 0.92 : 0.18;
 }
 
+// sum of layer means for y-axis domain (visual stack height, not true composition)
 function stackedTotal(row) {
   return (
     (row.hard_coral_cover ?? 0) +
@@ -128,6 +131,13 @@ function stackedTotal(row) {
   );
 }
 
+/**
+create tooltip container for hover interaction.
+@param {string} containerSelector
+@param {object} data - appData
+@param {object} state - shared appState
+@param {function} dispatch - unused; kept for consistent chart API
+*/
 export function init(containerSelector, data, state, dispatch) {
   chart.container = d3.select(containerSelector);
   chart.container.selectAll("*").remove();
@@ -205,7 +215,7 @@ export function update(data, state) {
     .nice()
     .range([innerHeight, 0]);
 
-  // —— Axes ——
+  // set the axes
   g.append("g")
     .attr("class", "axis axis--x")
     .attr("transform", `translate(0,${innerHeight})`)
@@ -235,7 +245,7 @@ export function update(data, state) {
     .attr("text-anchor", "middle")
     .text("Report year");
 
-  // —— Stacked areas (null means → 0 for stack only) ——
+  // d3.stack layers hard/soft/algae; null values become 0 for stacking only.
   const stack = d3
     .stack()
     .keys(LAYERS.map((l) => l.key))
@@ -279,7 +289,7 @@ export function update(data, state) {
         .y((d) => y(d[1]))
     );
 
-  // —— Hover layer ——
+  // set the hover layer
   const hoverG = g.append("g").attr("class", "benthic-hover-layer");
 
   const guideLine = hoverG
@@ -315,7 +325,7 @@ export function update(data, state) {
       hideTooltip(chart.tooltip);
     });
 
-  // —— Legend ——
+  //and the legend
   const legend = svg
     .append("g")
     .attr("class", "benthic-legend")
