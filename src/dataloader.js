@@ -1,6 +1,12 @@
+/*
+ This file is the whole process of data loading and CSV normalisation.
+ where raw CSV strings are parsed to typed values before charts consume the data.
+ */
+
 import * as d3 from "d3";
 import { parseBoolean, parseNumber } from "./utils.js";
 
+// paths under public/ served by Vite at runtime
 const DATA_PATHS = {
   master: "/data/aims_longterm_master_with_spatial.csv",
   reefPoints: "/data/reef_points.csv",
@@ -9,7 +15,7 @@ const DATA_PATHS = {
   capadGbr: "/data/capad_gbr_simplified.geojson",
 };
 
-/** Numeric fields on the master reef-year table. */
+// numeric fields on the master reef-year table
 const MASTER_NUMERIC = [
   "YEAR_CODE",
   "REPORT_YEAR",
@@ -25,6 +31,7 @@ const MASTER_NUMERIC = [
   "capad_match_count",
 ];
 
+// normalise one reef-year master row: numbers, booleans, trimmed strings
 function normalizeMasterRow(row) {
   const out = { ...row };
 
@@ -46,6 +53,7 @@ function normalizeMasterRow(row) {
   return out;
 }
 
+// normalise reef coordinate lookup table
 function normalizeReefPointRow(row) {
   return {
     REEF_ID: String(row.REEF_ID ?? "").trim(),
@@ -57,6 +65,7 @@ function normalizeReefPointRow(row) {
   };
 }
 
+// normalise protected-area attributes joined to reefs for the map
 function normalizeSpatialContextRow(row) {
   return {
     REEF_ID: String(row.REEF_ID ?? "").trim(),
@@ -73,6 +82,7 @@ function normalizeSpatialContextRow(row) {
   };
 }
 
+// normalise one cell of the precomputed correlation matrix (transform into long format)
 function normalizeCorrelationMatrixRow(row) {
   const interpretation = String(row.interpretation ?? "").trim();
 
@@ -101,9 +111,9 @@ function uniqueValues(rows, field) {
 }
 
 /**
- * Load optional JSON/GeoJSON; warn and return null on failure.
- * @param {string} path
- * @param {string} label
+load GeoJSON file and return null on failure.
+ @param {string} path
+ @param {string} label
  */
 export async function loadOptionalJson(path, label) {
   try {
@@ -121,9 +131,8 @@ export async function loadOptionalJson(path, label) {
   }
 }
 
-/**
- * Load and normalise primary CSV datasets plus optional CAPAD GeoJSON.
- */
+
+// Load required CSVs in parallel, optional CAPAD GeoJSON, and normalise all rows
 export async function loadAllData() {
   const [masterRaw, reefPointsRaw, spatialContextRaw, correlationMatrixRaw] =
     await Promise.all([
@@ -146,14 +155,13 @@ export async function loadAllData() {
   return { master, reefPoints, spatialContext, correlationMatrix, capadGbr };
 }
 
-/** Print a concise summary to the console after load. */
+
+// print a concise summary to the console after load
 export function logDataSummary(data) {
   const { master, reefPoints, spatialContext, correlationMatrix, capadGbr } =
     data;
 
-  const years = master
-    .map((r) => r.REPORT_YEAR)
-    .filter((y) => y !== null);
+  const years = master.map((r) => r.REPORT_YEAR).filter((y) => y !== null);
   const yearMin = d3.min(years);
   const yearMax = d3.max(years);
 

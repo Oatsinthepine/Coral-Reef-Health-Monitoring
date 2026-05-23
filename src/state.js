@@ -1,4 +1,8 @@
-/** Period presets: label → [startYear, endYear] */
+/*
+This file defines all project's shared application state and filter definitions.
+controls mutate this object in place, charts read it on each update()
+*/
+
 export const PERIOD_DEFINITIONS = {
   All: [1993, 2023],
   "1993–2005": [1993, 2005],
@@ -6,14 +10,14 @@ export const PERIOD_DEFINITIONS = {
   "2016–2023": [2016, 2023],
 };
 
-/** Indicator field keys → display labels */
+// THis is the indicator field keys of the ecological indicator chart
 export const INDICATOR_DEFINITIONS = {
   hard_coral_cover: "Hard coral",
   soft_coral_cover: "Soft coral",
   algae_cover: "Algae",
 };
 
-/** Default shared application state. */
+// create the default shared filter state passed to all chart modules
 export function createInitialState() {
   return {
     selectedSector: "All",

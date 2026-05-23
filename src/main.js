@@ -1,3 +1,8 @@
+/*
+ This file is the main entry point for the entire dashboard, it's responsible for loading the data, initializing the state, and wiring the controls to the charts.
+ The data flow is as follows: load CSV/GeoJSON -> create shared state -> wire controls -> init charts -> dispatch on filter changes -> all chart modules re-read appState via update().
+ */
+
 import { loadAllData, logDataSummary } from "./dataloader.js";
 import { createInitialState } from "./state.js";
 import { initControls, syncControlsFromState } from "./interaction/filters.js";
@@ -9,7 +14,7 @@ import * as CorrelationHeatmap from "./viz/CorrelationHeatmap.js";
 
 const statusEl = document.getElementById("load-status");
 
-/** Chart container selectors (Phase 4+ will render into these). */
+// register all chart modules and their DOM container selectors. 
 const CHART_MODULES = [
   { module: ReefMap, selector: "#reef-map" },
   { module: OverallTimeTrend, selector: "#overall-trend" },
@@ -18,7 +23,9 @@ const CHART_MODULES = [
   { module: CorrelationHeatmap, selector: "#correlation-heatmap" },
 ];
 
+// loaded datasets returned by dataloader.js 
 let appData = null;
+// mutable filter state shared by controls and chart update() calls.
 let appState = null;
 
 function setStatus(message, variant = "") {
@@ -28,14 +35,13 @@ function setStatus(message, variant = "") {
   if (variant) statusEl.classList.add(`load-status--${variant}`);
 }
 
-/** Mark chart placeholder boxes after data loads successfully. */
 function markChartContainersReady() {
   document.querySelectorAll(".chart-container").forEach((el) => {
     el.classList.add("chart-container--ready");
   });
 }
 
-/** Notify all chart modules of a state change. */
+// push current appState to every chart module's update(data, state)
 function updateAllCharts() {
   if (!appData || !appState) return;
 
@@ -46,10 +52,11 @@ function updateAllCharts() {
   }
 }
 
-/**
- * Central event bus: update linked views when filters change.
- * @param {string} event
- * @param {object} [payload]
+/** 
+ Here is the central dispatch loop, it is responsible for syncing the control UI when the sector changes from the map, and then redrawing all linked charts.
+ call dispatch() to sync the control UI when the sector changes from the map, and then redraw all linked charts.
+ @param {string} event - e.g. "sectorChange", "periodChange", "indicatorChange"
+ @param {object} [payload] - optional context (not used for routing)
  */
 function dispatch(event, payload = {}) {
   if (event === "sectorChange" && appState) {
@@ -59,6 +66,10 @@ function dispatch(event, payload = {}) {
   updateAllCharts();
 }
 
+/*
+Here is the bootstrap sequence, it is responsible for loading the data, initialising the state, building the controls, initializing the charts,
+This is called once on page load.
+ */
 async function bootstrap() {
   try {
     appData = await loadAllData();

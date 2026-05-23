@@ -1,8 +1,13 @@
+/*
+This file is the global dashboard controls: sector, period, and indicator selectors.
+Each control mutates the shared state object and calls dispatch() so all linked charts re-render via main.js → updateAllCharts().
+*/
+
 import { PERIOD_DEFINITIONS, INDICATOR_DEFINITIONS } from "../state.js";
 import { sectorLabel } from "../utils.js";
 
 /**
- * Build and wire dashboard controls; mutates state and calls dispatch on change.
+ Here we build sector dropdown, period buttons, and indicator select; wire change handlers.
  * @param {{ data: object, state: object, dispatch: function }} options
  */
 export function initControls({ data, state, dispatch }) {
@@ -15,6 +20,7 @@ export function initControls({ data, state, dispatch }) {
     return;
   }
 
+  // Sector options derived from loaded master data
   const sectors = [
     ...new Set(data.master.map((r) => r.SECTOR).filter(Boolean)),
   ].sort();
@@ -27,7 +33,7 @@ export function initControls({ data, state, dispatch }) {
   periodEl.classList.remove("control-slot", "control-slot--buttons");
   indicatorEl.classList.remove("control-slot");
 
-  // —— Sector select ——
+  // here are all the Sector select
   const sectorSelect = document.createElement("select");
   sectorSelect.id = "sector-select";
   sectorSelect.className = "control-select";
@@ -46,6 +52,7 @@ export function initControls({ data, state, dispatch }) {
   }
 
   sectorSelect.value = state.selectedSector;
+  // wire the change handler to the sector select
   sectorSelect.addEventListener("change", () => {
     state.selectedSector = sectorSelect.value;
     dispatch("sectorChange", { sector: state.selectedSector });
@@ -53,7 +60,7 @@ export function initControls({ data, state, dispatch }) {
 
   sectorEl.appendChild(sectorSelect);
 
-  // —— Period buttons ——
+
   periodEl.className = "period-buttons";
   periodEl.setAttribute("role", "group");
   periodEl.setAttribute("aria-labelledby", "period-label");
@@ -73,9 +80,11 @@ export function initControls({ data, state, dispatch }) {
       btn.setAttribute("aria-pressed", "false");
     }
 
+    // wire the change handler to the period buttons
     btn.addEventListener("click", () => {
       state.selectedPeriod = label;
       state.selectedYearRange = [...PERIOD_DEFINITIONS[label]];
+
       periodEl.querySelectorAll(".period-btn").forEach((b) => {
         const active = b.dataset.period === label;
         b.classList.toggle("period-btn--active", active);
@@ -90,7 +99,7 @@ export function initControls({ data, state, dispatch }) {
     periodEl.appendChild(btn);
   }
 
-  // —— Indicator select ——
+  // here are all the indicator selects
   const indicatorSelect = document.createElement("select");
   indicatorSelect.id = "indicator-select";
   indicatorSelect.className = "control-select";
@@ -104,6 +113,8 @@ export function initControls({ data, state, dispatch }) {
   }
 
   indicatorSelect.value = state.selectedIndicator;
+
+  // wire the change handler to the indicator select
   indicatorSelect.addEventListener("change", () => {
     state.selectedIndicator = indicatorSelect.value;
     dispatch("indicatorChange", { indicator: state.selectedIndicator });
@@ -113,8 +124,8 @@ export function initControls({ data, state, dispatch }) {
 }
 
 /**
- * Sync control UI to match shared state.
- * Call after non-DOM driven state changes (e.g. map click).
+ sync the control DOM to the shared state after non-control interactions (e.g. map click).
+ * @param {object} state - shared appState
  */
 export function syncControlsFromState(state) {
   const sectorSelect = document.getElementById("sector-select");

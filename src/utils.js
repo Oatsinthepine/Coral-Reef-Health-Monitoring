@@ -1,4 +1,8 @@
-/** Parse a CSV cell to number, or null if empty / invalid. */
+/*
+This file is responsible for all shared parsing and filtering helpers used by dataloader and chart modules.
+*/
+
+// parse a CSV cell to number, or null if empty or invalid
 export function parseNumber(value) {
   if (value === null || value === undefined) return null;
   const trimmed = String(value).trim();
@@ -7,7 +11,7 @@ export function parseNumber(value) {
   return Number.isFinite(n) ? n : null;
 }
 
-/** Normalise True/False strings from CSV to boolean or null. */
+// normalise True/False strings from CSV to boolean or null
 export function parseBoolean(value) {
   if (value === null || value === undefined) return null;
   const s = String(value).trim().toLowerCase();
@@ -21,27 +25,28 @@ export const SECTOR_LABELS = {
   CA: "Cairns",
   CB: "Capricorn-Bunker",
   CG: "Cape Grenville",
-  CL: "Cape Upstart / Whitsunday",
-  CU: "Cumberland",
-  IN: "Inner",
+  CL: "Cooktown-Lizard Island",
+  CU: "Cape Upstart",
+  IN: "Innisfail",
   PC: "Princess Charlotte Bay",
   PO: "Pompey",
   SW: "Swain",
-  TO: "Torres Strait",
-  WH: "Wet Tropics",
+  TO: "Townsville / Torres Strait",
+  WH: "Whitsunday",
 };
 
+// resolve a sector code to a display label for tooltips and controls
 export function sectorLabel(code) {
   return SECTOR_LABELS[code] ?? code;
 }
 
-/** Filter master rows by sector (All = no filter). */
+// filter master rows by sector (All = no filter)
 export function filterBySector(rows, sector) {
   if (!sector || sector === "All") return rows;
   return rows.filter((r) => r.SECTOR === sector);
 }
 
-/** Filter master rows by inclusive report year range. */
+// filter master rows by inclusive report year range
 export function filterByYearRange(rows, [start, end]) {
   if (start == null || end == null) return rows;
   return rows.filter(
@@ -52,7 +57,7 @@ export function filterByYearRange(rows, [start, end]) {
   );
 }
 
-/** Apply sector and year range filters from shared state. */
+// apply sector and year range filters from shared state
 export function filterMasterRows(rows, state) {
   return filterByYearRange(
     filterBySector(rows, state.selectedSector),
