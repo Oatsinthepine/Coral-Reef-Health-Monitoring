@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/src/styles/style.css" />
   </head>
   <body>
-    <!-- 1. Header / Intro -->
+    <!-- header: title, intro and coral reef illustrations -->
     <header id="intro" class="page-header">
       <div class="page-header__inner">
         <div class="page-header__copy">
@@ -35,8 +35,9 @@
       </div>
     </header>
 
+    <!-- main dashboard: user guide, global controls, five charts, summary -->
     <main id="app" class="page-main">
-      <!-- 2. User guide -->
+      <!-- User guide and data note -->
       <section id="guide" class="section-card" aria-labelledby="guide-heading">
         <h2 id="guide-heading">How to use this visualisation</h2>
         <ul class="guide-list">
@@ -60,7 +61,7 @@
         </div>
       </section>
 
-      <!-- 3. Controls bar -->
+      <!-- Global filters: sector, period, indicator (populated by filters.js) -->
       <section id="controls" class="controls-bar" aria-label="Chart controls">
         <p id="load-status" class="load-status" aria-live="polite">Loading data…</p>
         <div class="controls-bar__inner">
@@ -79,7 +80,7 @@
         </div>
       </section>
 
-      <!-- 4. Graph 1: Reef map -->
+      <!-- Graph 1: Reef map (#reef-map) -->
       <section id="map-section" class="section-card chart-section" aria-labelledby="map-heading">
         <div class="chart-section__layout">
           <div class="chart-section__narrative">
@@ -101,7 +102,7 @@
         </div>
       </section>
 
-      <!-- 5. Graph 2: Live/dead coral trend -->
+      <!-- Graph 2: Live/dead coral trend (#overall-trend) -->
       <section id="trend-section" class="section-card chart-section" aria-labelledby="trend-heading">
         <div class="chart-section__layout">
           <div class="chart-section__narrative">
@@ -118,7 +119,7 @@
         </div>
       </section>
 
-      <!-- 6. Graph 3: Benthic cover -->
+      <!-- Graph 3: Benthic stacked area (#benthic-composition) -->
       <section id="benthic-section" class="section-card chart-section" aria-labelledby="benthic-heading">
         <div class="chart-section__layout">
           <div class="chart-section__narrative">
@@ -139,7 +140,7 @@
         </div>
       </section>
 
-      <!-- 7. Graph 4: Ecological indicator by sector -->
+      <!-- Graph 4: Ecological indicator bubbles (#ecological-indicator) -->
       <section id="indicator-section" class="section-card chart-section" aria-labelledby="indicator-chart-heading">
         <div class="chart-section__layout">
           <div class="chart-section__narrative">
@@ -156,7 +157,7 @@
         </div>
       </section>
 
-      <!-- 8. Graph 5: Correlation heatmap -->
+      <!-- Graph 5: Correlation heatmap (#correlation-heatmap, #heatmap-explanation) -->
       <section id="heatmap-section" class="section-card chart-section" aria-labelledby="heatmap-heading">
         <div class="chart-section__layout chart-section__layout--heatmap">
           <div class="chart-section__narrative">
@@ -181,7 +182,7 @@
         </div>
       </section>
 
-      <!-- 9. Summary / Footer -->
+      <!-- Summary, data sources, and project footer -->
       <footer id="summary" class="section-card summary-section" aria-labelledby="summary-heading">
         <h2 id="summary-heading">Summary and references</h2>
 
@@ -268,6 +269,7 @@
       </footer>
     </main>
 
+    <!-- Vite entry point: loads data, controls, and chart modules -->
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

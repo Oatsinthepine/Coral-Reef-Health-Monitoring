@@ -1,9 +1,11 @@
+/* box model reset */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/* theme variables */
 :root {
   --color-bg: #f3f8fb;
   --color-surface: rgba(255, 255, 255, 0.96);
@@ -26,6 +28,7 @@
   --shadow-card: 0 8px 24px rgba(28, 73, 92, 0.07);
 }
 
+/* base typography and document styles */
 html {
   font-size: 16px;
   scroll-behavior: smooth;
@@ -44,7 +47,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* —— Typography —— */
+/* typography */
 h1,
 h2,
 h3 {
@@ -77,18 +80,28 @@ p:last-child {
   margin-bottom: 0;
 }
 
-/* —— Page shell —— */
-.page-header {
-  background: linear-gradient(135deg, #d9f0f7 0%, #edf8fb 48%, #f6fbfd 100%);
-  border-bottom: 1px solid rgba(119, 166, 184, 0.35);
-}
-
+/* page layout */
 .page-header__inner,
+
 .page-main {
   max-width: var(--max-width);
   margin: 0 auto;
   padding-left: var(--space-md);
   padding-right: var(--space-md);
+}
+
+.page-main {
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* header styles */
+.page-header {
+  background: linear-gradient(135deg, #d9f0f7 0%, #edf8fb 48%, #f6fbfd 100%);
+  border-bottom: 1px solid rgba(119, 166, 184, 0.35);
 }
 
 .page-header__inner {
@@ -120,14 +133,6 @@ p:last-child {
   border: 1px solid rgba(255, 255, 255, 0.7);
 }
 
-.page-main {
-  padding-top: var(--space-lg);
-  padding-bottom: var(--space-xl);
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
 .subtitle {
   margin: 0 0 var(--space-md);
   font-size: 1.05rem;
@@ -140,7 +145,7 @@ p:last-child {
   color: var(--color-muted);
 }
 
-/* —— Section cards —— */
+/* chart cards and narrative sections */
 .section-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -150,7 +155,7 @@ p:last-child {
   backdrop-filter: saturate(115%);
 }
 
-/* —— User guide —— */
+/* user guide */
 .guide-list {
   margin: 0 0 var(--space-lg);
   padding-left: 1.25rem;
@@ -177,7 +182,7 @@ p:last-child {
   color: var(--color-muted);
 }
 
-/* —— Controls bar —— */
+/* controls bar */
 .controls-bar {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -213,7 +218,7 @@ p:last-child {
   min-height: 2.25rem;
 }
 
-/* —— Form controls —— */
+/* form controls */
 .control-select {
   width: 100%;
   min-height: 2.25rem;
@@ -305,7 +310,7 @@ p:last-child {
   background: #fdf4f4;
 }
 
-/* —— Chart sections —— */
+/* chart section layout and containers */
 .chart-section__layout {
   display: grid;
   grid-template-columns: minmax(260px, 0.75fr) minmax(620px, 1.75fr);
@@ -345,7 +350,7 @@ p:last-child {
   border-radius: 0 4px 4px 0;
 }
 
-/* —— Chart placeholders —— */
+/* chart mount points (D3 SVG or Leaflet map injected by viz modules) */
 .chart-container {
   position: relative;
   min-height: var(--chart-min-height);
@@ -383,7 +388,7 @@ p:last-child {
   display: none;
 }
 
-/* —— Reef map (Graph 1) —— */
+/* map (chart 1) */
 .reef-map-container {
   position: relative;
   min-height: 620px;
@@ -478,7 +483,7 @@ p:last-child {
   text-align: right;
 }
 
-/* —— Trend chart (Graph 2) —— */
+/* graph 2: live/dead coral trend */
 .trend-chart-svg {
   display: block;
   width: 100%;
@@ -549,7 +554,7 @@ p:last-child {
   fill: var(--color-muted);
 }
 
-/* —— Benthic chart (Graph 3) —— */
+/* graph 3: benthic stacked area */
 .benthic-chart-svg {
   display: block;
   width: 100%;
@@ -616,7 +621,7 @@ p:last-child {
   fill: var(--color-muted);
 }
 
-/* —— Ecological indicator chart (Graph 4) —— */
+/* graph 4: ecological indicator bubbles */
 .indicator-chart-svg {
   display: block;
   width: 100%;
@@ -689,6 +694,7 @@ p:last-child {
   pointer-events: none;
 }
 
+/* shared D3 hover tooltip (positioned in JS to stay within chart bounds) */
 .chart-tooltip {
   position: absolute;
   z-index: 10;
@@ -713,7 +719,7 @@ p:last-child {
   color: var(--color-accent);
 }
 
-/* —— Heatmap explanation panel —— */
+/* heatmap click-to-inspect panel (graph 5 narrative column) */
 .heatmap-explanation-panel {
   margin-top: var(--space-md);
   padding: var(--space-md);
@@ -764,7 +770,7 @@ p:last-child {
   color: var(--color-muted);
 }
 
-/* —— Correlation heatmap (Graph 5) —— */
+/* graph 5: correlation heatmap */
 .heatmap-chart-svg {
   display: block;
   width: 100%;
@@ -814,7 +820,7 @@ p:last-child {
   font-weight: 600;
 }
 
-/* —— Summary / footer —— */
+/* summary and footer */
 .summary-section h2 {
   margin-bottom: var(--space-lg);
 }
@@ -852,7 +858,7 @@ p:last-child {
   color: var(--color-muted);
 }
 
-/* —— Responsive —— */
+/* responsive breakpoints */
 @media (max-width: 1024px) {
   .controls-bar__inner {
     grid-template-columns: repeat(2, 1fr);
@@ -940,6 +946,7 @@ p:last-child {
   }
 }
 
+/* summary section links and inline file references */
 .source-list a,
 .limitations-list a {
   color: var(--color-accent);
