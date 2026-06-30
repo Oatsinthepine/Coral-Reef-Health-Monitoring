@@ -1,171 +1,352 @@
 # Mapping Coral Reef Health in the Great Barrier Reef
 
-## 1. Project overview
+## Technology Stack
 
-This repository contains the interactive narrative visualisation for the FIT5147
-Data Visualisation Project (DVP). It is a single-page dashboard that
-communicates long-term coral condition, benthic cover indicators, ecological
-disturbance relationships, and protected-area spatial context across the
-Australian Institute of Marine Science (AIMS) management sectors of the Great
-Barrier Reef.
+![JavaScript](https://img.shields.io/badge/JavaScript-ES%20Modules-F7DF1E?logo=javascript&logoColor=black)
+![D3.js](https://img.shields.io/badge/D3.js-Interactive%20Charts-F9A03C?logo=d3dotjs&logoColor=white)
+![Leaflet](https://img.shields.io/badge/Leaflet-Interactive%20Map-199900?logo=leaflet&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-Build%20Tool-646CFF?logo=vite&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-Semantic%20Layout-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-Responsive%20Design-1572B6?logo=css3&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Continuous%20Deployment-2088FF?logo=githubactions&logoColor=white)
+![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Hosting-222222?logo=github&logoColor=white)
 
-The dashboard is built with HTML, CSS and vanilla JavaScript (ES modules),
-using D3.js for the statistical charts, Leaflet for the geographic map, and
-Vite as the build tool.
+### FIT5147 Data Visualisation Project | Interactive Coral Reef Monitoring Dashboard
 
-## 2. Main visualisation components
+This project is an interactive narrative visualisation that explores long-term coral reef condition across the Great Barrier Reef. It combines spatial, temporal, ecological, and protected-area data to help users examine how coral condition varies across years and management sectors.
 
-The dashboard contains five linked views:
+The dashboard integrates a Leaflet reef map with four D3.js statistical visualisations. Shared filters and linked interactions allow users to move from a broad spatial overview to detailed temporal and ecological comparisons.
 
-1. **Reef map (Leaflet).** Reef monitoring sites coloured by management sector,
-   overlaid with a simplified CAPAD marine protected-area layer. Clicking a
-   reef sets the active sector across the dashboard.
-2. **Live and dead coral cover over time (D3 line chart).** Mean live coral and
-   mean dead coral cover by year for the selected sector and period.
-3. **Benthic cover indicators (D3 stacked area chart).** Yearly mean hard
-   coral, soft coral and algae cover for the selected sector and period.
-4. **Ecological indicator by sector (D3 bubble scatter).** Sector-year mean
-   cover for the selected indicator (hard coral / soft coral / algae); bubble
-   size encodes the reef-year sample count contributing to each point.
-5. **Relationship overview (D3 correlation heatmap).** Pearson correlation
-   coefficients among reef condition and disturbance indicators, computed once
-   from complete reef-year cases.
+The project was developed as an individual FIT5147 Data Visualisation Project at Monash University and has since been prepared as a public portfolio project.
 
-## 3. Interaction guide
+## Live Demo
 
-| Control / action | Effect |
-|------------------|--------|
-| **Sector dropdown** | Filters the trend, benthic and bubble charts to one sector, and highlights matching reef markers on the map. |
-| **Period buttons** (`All`, `1993–2005`, `2006–2015`, `2016–2023`) | Restrict the year range used by the trend, benthic and bubble charts. |
-| **Indicator dropdown** (`Hard coral`, `Soft coral`, `Algae`) | Switches the measure displayed in the ecological indicator bubble chart. |
-| **Hover a reef marker** | Shows reef name, sector, shelf, protected-area status and CAPAD attribution. |
-| **Click a reef marker** | Sets the dashboard sector to the clicked reef's sector. |
-| **"Show all sectors" button** | Resets the sector filter to `All`. |
-| **Hover a chart** | Boundary-safe tooltip with the underlying values (year, mean cover, reef-year count, etc.). |
-| **Click a line / area legend item** | Focus that series in the trend or benthic chart; click again to reset. |
-| **Click a heatmap cell** | Selects the relationship and populates the explanation panel with Pearson r, Spearman ρ, complete-case count and the interpretation. |
+Open the deployed dashboard through GitHub Pages:
 
-## 4. Data files
+[![Launch Dashboard](https://img.shields.io/badge/Launch-Interactive%20Dashboard-0B7285?style=for-the-badge&logo=githubpages&logoColor=white)](https://oatsinthepine.github.io/Coral-Reef-Health-Monitoring/)
 
-The following files must be present in `public/data/` before running the
-project:
+**Live URL:** https://oatsinthepine.github.io/Coral-Reef-Health-Monitoring/
 
-- `aims_longterm_master_with_spatial.csv` — Reef-year master records with
-  AIMS indicators joined to spatial context.
-- `reef_points.csv` — Reef coordinates used to plot points on the map.
-- `reef_spatial_context.csv` — Marine protected-area attributes per reef.
-- `correlation_matrix_long.csv` — Precomputed Pearson / Spearman correlation
-  matrix (long format) used by the heatmap.
-- `capad_gbr_simplified.geojson` — Simplified CAPAD marine protected-area
-  polygons clipped to the Great Barrier Reef region (optional but recommended
-  for the map overlay).
+The OpenStreetMap base layer requires an internet connection when using the dashboard.
 
-### Original data sources
+---
 
-- **AIMS Long-term Monitoring Program** — reef-year condition and disturbance
-  indicators, reef coordinates.
+## Project Overview
+
+The dashboard is designed as a guided but exploratory data story. It communicates three main ideas:
+
+- Coral reef condition changes over time rather than following a single uniform trend.
+- Reef condition is spatially uneven across Great Barrier Reef management sectors.
+- Multiple ecological indicators are required to interpret reef health responsibly.
+
+The application is implemented as a single-page Vite project using vanilla JavaScript ES modules. D3.js is used for the statistical visualisations, Leaflet is used for the map, and GitHub Actions automatically builds and deploys the production site to GitHub Pages.
+
+---
+
+## Visualisation Architecture
+
+```plaintext
+AIMS reef monitoring data
+CAPAD marine protected-area data
+Precomputed correlation data
+              |
+              v
+       Data loading layer
+      src/dataloader.js
+              |
+              v
+        Shared app state
+         src/state.js
+              |
+              v
+      Central dispatch loop
+          src/main.js
+              |
+     +--------+--------+--------+--------+--------+
+     |                 |                 |        |
+     v                 v                 v        v
+ Leaflet map      Line chart       Area chart  Bubble chart
+     |                                              |
+     +---------------- linked filters --------------+
+                            |
+                            v
+                  Correlation heatmap
+```
+
+The dashboard follows a modular `init()` and `update()` lifecycle. Each visualisation module initialises its container once and then updates in response to shared state changes.
+
+---
+
+## Main Visualisation Components
+
+### 1. Reef Map
+
+The Leaflet map provides the spatial entry point to the dashboard.
+
+- Reef monitoring sites are coloured by management sector.
+- A simplified CAPAD marine protected-area layer provides geographic context.
+- Hovering over a reef shows reef name, sector, shelf, and protected-area information.
+- Clicking a reef updates the active sector across the linked charts.
+
+### 2. Live and Dead Coral Cover Over Time
+
+A D3 line chart shows yearly mean live coral and dead coral cover.
+
+- The chart responds to sector and period filters.
+- Hover interaction reveals exact yearly means and reef-year counts.
+- Legend interaction allows one series to be emphasised temporarily.
+
+### 3. Benthic Cover Indicators
+
+A D3 stacked area chart compares yearly mean hard coral, soft coral, and algae cover.
+
+- Users can inspect broad changes in benthic indicators over time.
+- Legend selection focuses an individual layer.
+- Values represent yearly means and are not constrained to sum to 100%.
+
+### 4. Ecological Indicator Bubble Chart
+
+A D3 bubble scatter plot supports sector-year comparison.
+
+- X-axis: report year.
+- Y-axis: selected ecological indicator.
+- Colour: management sector.
+- Bubble size: reef-year sample count.
+
+Users can switch between hard coral, soft coral, and algae using the indicator selector.
+
+### 5. Correlation Heatmap
+
+A D3 heatmap summarises relationships among reef condition and disturbance indicators.
+
+- Cell colour encodes Pearson correlation coefficient.
+- Hover interaction shows detailed statistics.
+- Clicking a cell updates an explanation panel with Pearson r, Spearman rho, complete-case count, and interpretation.
+
+---
+
+## Core Features
+
+- Interactive single-page narrative dashboard.
+- Linked spatial and statistical visualisations.
+- Shared sector, period, and indicator controls.
+- Leaflet map with OpenStreetMap tiles and CAPAD GeoJSON overlay.
+- D3 line, stacked area, bubble, and heatmap visualisations.
+- Base-path-aware loading for GitHub Pages deployment.
+- Responsive layout for desktop and smaller screens.
+- Boundary-safe tooltips that remain inside chart containers.
+- Precomputed correlation matrix for fast and deterministic rendering.
+- Simplified GeoJSON for improved browser performance.
+- Automated GitHub Pages deployment through GitHub Actions.
+
+---
+
+## Interaction Guide
+
+| Control or action | Effect |
+|---|---|
+| **Sector dropdown** | Filters the line, area, and bubble charts and highlights matching reef markers. |
+| **Period buttons** | Restrict the visible year range to all years or a selected period. |
+| **Indicator dropdown** | Changes the ecological indicator shown in the bubble chart. |
+| **Hover a reef marker** | Shows reef metadata and protected-area context. |
+| **Click a reef marker** | Updates the shared sector selection across the dashboard. |
+| **Show all sectors** | Resets the sector filter. |
+| **Hover a chart** | Shows the underlying year, mean, count, or correlation values. |
+| **Click a line or area legend item** | Focuses a series or layer; clicking again resets the view. |
+| **Click a heatmap cell** | Updates the detailed relationship explanation panel. |
+
+---
+
+## Data Sources
+
+The project uses processed data derived from the following sources:
+
+- **Australian Institute of Marine Science Long-Term Monitoring Program** — reef condition, disturbance indicators, and reef coordinates.
 - **MMP Coral 2024** — supplementary recent coral context.
-- **CAPAD Marine 2024** — Collaborative Australian Protected Areas Database
-  (marine areas).
+- **CAPAD Marine 2024** — marine protected-area boundaries from the Collaborative Australian Protected Areas Database.
 
-The CSV and GeoJSON files were produced in the upstream Data Exploration
-Project; the dataloader expects them to be present under `public/data/`.
+The frontend expects these files under `public/data/`:
 
-## 5. Setup and running locally
+| File | Purpose |
+|---|---|
+| `aims_longterm_master_with_spatial.csv` | Reef-year monitoring records joined to spatial context. |
+| `reef_points.csv` | Reef coordinates used by the Leaflet map. |
+| `reef_spatial_context.csv` | Sector, shelf, and protected-area attributes for each reef. |
+| `correlation_matrix_long.csv` | Precomputed Pearson and Spearman correlation results. |
+| `capad_gbr_simplified.geojson` | Simplified protected-area polygons for the Great Barrier Reef region. |
 
-Prerequisites: **Node.js 18 or newer**.
+The processed files were produced during the upstream Data Exploration Project. The original CAPAD geometry was simplified before use so that the public dashboard remains lightweight and responsive.
+
+---
+
+## Repository Structure
+
+```plaintext
+.
+├── .github/
+│   └── workflows/
+│       └── deploy.yml              # GitHub Pages build and deployment workflow
+├── index.html                      # Single-page narrative layout
+├── package.json                    # Dependencies and npm scripts
+├── package-lock.json               # Reproducible dependency versions
+├── vite.config.js                  # Vite and GitHub Pages base-path configuration
+├── public/
+│   ├── data/                       # CSV and GeoJSON data files
+│   └── pics/                       # Static project images
+└── src/
+    ├── main.js                     # Application bootstrap and central dispatch loop
+    ├── dataloader.js               # Data loading, parsing, and normalisation
+    ├── state.js                    # Shared dashboard state and control definitions
+    ├── utils.js                    # Filtering, formatting, and reusable helpers
+    ├── interaction/
+    │   └── filters.js              # Sector, period, and indicator controls
+    ├── viz/
+    │   ├── ReefMap.js              # Leaflet reef map
+    │   ├── OverallTimeTrend.js     # Live and dead coral line chart
+    │   ├── BenthicComposition.js   # Benthic stacked area chart
+    │   ├── EcologicalIndicator.js  # Sector-year bubble chart
+    │   └── CorrelationHeatmap.js   # Correlation heatmap and explanation panel
+    └── styles/
+        └── style.css               # Layout, typography, chart, and responsive styles
+```
+
+---
+
+## Local Setup
+
+### Prerequisites
+
+- Node.js 18 or newer.
+- npm, which is included with Node.js.
+- A modern web browser.
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Oatsinthepine/Coral-Reef-Health-Monitoring.git
+cd Coral-Reef-Health-Monitoring
+```
+
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Start the local development server:
+
+```bash
 npm run dev
 ```
 
-Then open the local Vite URL printed in the terminal (defaults to
-`http://localhost:5173`).
+Open the URL printed by Vite, normally:
 
-## 6. Build and preview
+```plaintext
+http://localhost:5173
+```
+
+---
+
+## Production Build
+
+Create a production build:
 
 ```bash
-npm run build      # production build to dist/
-npm run preview    # serve the production build for inspection
+npm run build
 ```
 
-## 7. Project structure
+Preview the generated site locally:
 
-```
-Coral-Reef-Health-Monitoring/
-├── index.html                  # Single-page layout (header, controls, 5 chart sections, summary)
-├── package.json                # Dependencies and npm scripts
-├── vite.config.js              # Vite configuration
-├── public/
-│   └── data/                   # CSV and GeoJSON data files (see section 4)
-└── src/
-    ├── main.js                 # Bootstrap: loads data, initialises controls and charts, dispatch loop
-    ├── dataloader.js           # CSV + optional GeoJSON loading and normalisation
-    ├── state.js                # Shared application state and period / indicator definitions
-    ├── utils.js                # Filtering, sector-label, and formatting helpers
-    ├── interaction/
-    │   └── filters.js          # Builds the sector / period / indicator controls and syncs them to state
-    ├── viz/
-    │   ├── ReefMap.js          # Graph 1 — Leaflet reef map
-    │   ├── OverallTimeTrend.js # Graph 2 — live / dead coral line chart
-    │   ├── BenthicComposition.js # Graph 3 — benthic stacked area
-    │   ├── EcologicalIndicator.js # Graph 4 — sector bubble scatter
-    │   └── CorrelationHeatmap.js  # Graph 5 — correlation heatmap
-    └── styles/
-        └── style.css           # Dashboard styling and responsive rules
+```bash
+npm run preview
 ```
 
-## 8. Libraries used
+The production output is written to:
 
-- **D3.js** (v7) — data loading, aggregation, scales, axes, stack layout and
-  rendering for the four statistical charts.
-- **Leaflet** (v1.9) — interactive base map, GeoJSON overlay and reef
-  point markers for Graph 1.
-- **Vite** (v6) — development server and production bundler.
+```plaintext
+dist/
+```
 
-No frontend framework (React / Vue / Svelte) is used; all charts are vanilla
-ES modules.
+The repository uses a Vite base path of:
 
-## 9. Design and implementation notes
+```plaintext
+/Coral-Reef-Health-Monitoring/
+```
 
-- D3.js drives all statistical charts (line, stacked area, bubble scatter,
-  heatmap). Each chart module exports `init(containerSelector, data, state,
-  dispatch)` and `update(data, state)` so that the central dispatch loop in
-  `src/main.js` can refresh every linked view from a single state change.
-- Leaflet is used for the reef map because it handles Web Mercator
-  projection, pan/zoom and GeoJSON overlays reliably and out of the box,
-  which would require non-trivial code to reproduce in D3.
-- The CAPAD marine protected-area layer was simplified before being committed
-  to `public/data/`, so the map loads a small, fast GeoJSON instead of the
-  original multi-megabyte source file. If the file is absent, the dataloader
-  logs a warning and the dashboard continues to render with reef points only.
-- The correlation matrix is precomputed in the upstream Data Exploration
-  Project and loaded as a long-format CSV. This keeps the heatmap fast and
-  deterministic and avoids running pairwise correlations in the browser.
-- Tooltips share a single `.chart-tooltip` style and a boundary-safe
-  positioning helper so they never overflow their chart container.
-- Module-local state (e.g. legend focus, selected heatmap cell) is kept
-  inside each chart module; shared interactive state (sector, period,
-  indicator) lives in the global `appState` defined in `src/state.js`.
+Local data and image paths use Vite's base-path support so that the application works both locally and on GitHub Pages.
 
-## 10. Limitations
+---
 
-- Benthic cover indicators (hard coral, soft coral, algae) are available for
-  a subset of reef-year records. Years and reefs without these measurements
-  are excluded from the benthic chart and from correlation computations that
-  involve them.
-- Correlation indicates statistical association only; it does **not** imply
-  causation.
-- Marine protected-area status is presented as spatial context. The dashboard
-  does not attempt to estimate any management effect.
-- The CAPAD overlay uses simplified geometry; it is intended for visual
-  context, not for precise area calculations.
-- The dashboard is an exploratory narrative visualisation, not a causal
-  ecological model.
+## GitHub Pages Deployment
 
-## 11. Author
+Deployment is automated through `.github/workflows/deploy.yml`.
 
-- **Student name:** Ziyue Zhou
-- **Student ID:** 30232872
-- **Unit:** FIT5147 Data Visualisation Project
+Each push to the `main` branch triggers the following workflow:
+
+```plaintext
+Checkout repository
+        |
+        v
+Install Node.js and npm dependencies
+        |
+        v
+Run npm run build
+        |
+        v
+Upload dist/ as a GitHub Pages artifact
+        |
+        v
+Deploy to GitHub Pages
+```
+
+The deployed site is available at:
+
+https://oatsinthepine.github.io/Coral-Reef-Health-Monitoring/
+
+---
+
+## Design and Implementation Decisions
+
+- The dashboard uses a guided top-to-bottom structure while preserving exploratory controls.
+- Leaflet was selected for the geographic view because it provides reliable projection, pan, zoom, and GeoJSON support.
+- D3.js was used for the statistical views because it provides direct control over data joins, scales, axes, marks, and interaction behaviour.
+- Shared state coordinates sector, period, and indicator selections across the dashboard.
+- The correlation matrix is precomputed rather than recalculated in the browser, which improves performance and reproducibility.
+- CAPAD geometry is simplified before frontend use to reduce network and rendering cost.
+- Protected-area status is presented as spatial context rather than evidence of management effectiveness.
+
+---
+
+## Limitations
+
+- Benthic cover indicators are available for only a subset of reef-year records.
+- Missing observations are excluded from calculations that require those variables.
+- Correlation indicates statistical association and does not imply causation.
+- Protected-area status is contextual and is not used to estimate a management effect.
+- The simplified CAPAD layer is intended for visual context rather than precise spatial analysis.
+- OpenStreetMap tiles require an active internet connection.
+- The dashboard is an exploratory narrative visualisation rather than a causal ecological model.
+
+---
+
+## Portfolio Value
+
+This project demonstrates experience in:
+
+- translating analytical findings into an interactive data product;
+- combining temporal, ecological, and geospatial datasets;
+- implementing linked views with shared application state;
+- building custom D3.js visualisations;
+- integrating Leaflet and GeoJSON;
+- optimising data assets for browser delivery;
+- structuring a modular vanilla JavaScript application;
+- deploying a Vite project through GitHub Actions and GitHub Pages.
+
+---
+
+## Author
+
+**Ziyue Zhou**  
+Master of Data Science, Monash University
+
+This project was developed individually as part of FIT5147 Data Visualisation.
