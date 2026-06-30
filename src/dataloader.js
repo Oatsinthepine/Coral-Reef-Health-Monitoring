@@ -6,13 +6,16 @@
 import * as d3 from "d3";
 import { parseBoolean, parseNumber } from "./utils.js";
 
-// paths under public/ served by Vite at runtime
+// Vite runtime base URL ("/" in dev, "/Coral-Reef-Health-Monitoring/" on GitHub Pages)
+const BASE_URL = import.meta.env.BASE_URL;
+
+// paths under public/ served by Vite at runtime (base-path aware)
 const DATA_PATHS = {
-  master: "/data/aims_longterm_master_with_spatial.csv",
-  reefPoints: "/data/reef_points.csv",
-  spatialContext: "/data/reef_spatial_context.csv",
-  correlationMatrix: "/data/correlation_matrix_long.csv",
-  capadGbr: "/data/capad_gbr_simplified.geojson",
+  master: `${BASE_URL}data/aims_longterm_master_with_spatial.csv`,
+  reefPoints: `${BASE_URL}data/reef_points.csv`,
+  spatialContext: `${BASE_URL}data/reef_spatial_context.csv`,
+  correlationMatrix: `${BASE_URL}data/correlation_matrix_long.csv`,
+  capadGbr: `${BASE_URL}data/capad_gbr_simplified.geojson`,
 };
 
 // numeric fields on the master reef-year table
