@@ -6,7 +6,6 @@ node_modules/
 .pnpm-store/
 .yarn/
 yarn-error.log
-package-lock.json
 
 # Keep package-lock.json only if you intentionally want reproducible npm installs.
 # If your unit expects exact reproducibility, remove package-lock.json from this ignore list.
